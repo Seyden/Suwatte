@@ -142,6 +142,14 @@
 		DF8B8746282077AC0044D277 /* InteractiveTagCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8B8745282077AC0044D277 /* InteractiveTagCell.swift */; };
 		DF8BEAFF2A71E8FC005C396F /* ReadLater+CollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEAFE2A71E8FC005C396F /* ReadLater+CollectionView.swift */; };
 		DF8BEB012A7205AB005C396F /* ReadLater+ContextMenu.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB002A7205AB005C396F /* ReadLater+ContextMenu.swift */; };
+		DF8BEB042A722163005C396F /* NovelViewer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB032A722163005C396F /* NovelViewer.swift */; };
+		DF8BEB072A72218F005C396F /* NV+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB062A72218F005C396F /* NV+ViewModel.swift */; };
+		DF8BEB092A722197005C396F /* NV+RealmActor.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB082A722197005C396F /* NV+RealmActor.swift */; };
+		DF8BEB0D2A723486005C396F /* NV+Representable.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB0C2A723486005C396F /* NV+Representable.swift */; };
+		DF8BEB0F2A723499005C396F /* NV+Container.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB0E2A723499005C396F /* NV+Container.swift */; };
+		DF8BEB112A7234A0005C396F /* NV+Page.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB102A7234A0005C396F /* NV+Page.swift */; };
+		DF8BEB132A7234A8005C396F /* NV+WebView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB122A7234A8005C396F /* NV+WebView.swift */; };
+		DF8BEB152A7235B2005C396F /* NV+Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8BEB142A7235B2005C396F /* NV+Coordinator.swift */; };
 		DF8C473B2975DDBA00813F63 /* Reader+ProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8C473A2975DDBA00813F63 /* Reader+ProgressView.swift */; };
 		DF8D0B212800EE47003E4C3E /* STTNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8D09E12800EE47003E4C3E /* STTNotifier.swift */; };
 		DF8D0B222800EE47003E4C3E /* STTScheduler.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF8D09E22800EE47003E4C3E /* STTScheduler.swift */; };
@@ -498,6 +506,14 @@
 		DF8B8745282077AC0044D277 /* InteractiveTagCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InteractiveTagCell.swift; sourceTree = "<group>"; };
 		DF8BEAFE2A71E8FC005C396F /* ReadLater+CollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReadLater+CollectionView.swift"; sourceTree = "<group>"; };
 		DF8BEB002A7205AB005C396F /* ReadLater+ContextMenu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReadLater+ContextMenu.swift"; sourceTree = "<group>"; };
+		DF8BEB032A722163005C396F /* NovelViewer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NovelViewer.swift; sourceTree = "<group>"; };
+		DF8BEB062A72218F005C396F /* NV+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NV+ViewModel.swift"; sourceTree = "<group>"; };
+		DF8BEB082A722197005C396F /* NV+RealmActor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NV+RealmActor.swift"; sourceTree = "<group>"; };
+		DF8BEB0C2A723486005C396F /* NV+Representable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NV+Representable.swift"; sourceTree = "<group>"; };
+		DF8BEB0E2A723499005C396F /* NV+Container.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NV+Container.swift"; sourceTree = "<group>"; };
+		DF8BEB102A7234A0005C396F /* NV+Page.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NV+Page.swift"; sourceTree = "<group>"; };
+		DF8BEB122A7234A8005C396F /* NV+WebView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NV+WebView.swift"; sourceTree = "<group>"; };
+		DF8BEB142A7235B2005C396F /* NV+Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NV+Coordinator.swift"; sourceTree = "<group>"; };
 		DF8C473A2975DDBA00813F63 /* Reader+ProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Reader+ProgressView.swift"; sourceTree = "<group>"; };
 		DF8D09E12800EE47003E4C3E /* STTNotifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTNotifier.swift; sourceTree = "<group>"; };
 		DF8D09E22800EE47003E4C3E /* STTScheduler.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = STTScheduler.swift; sourceTree = "<group>"; };
@@ -1108,6 +1124,7 @@
 		DF7B18862830B467006A54C9 /* Reader */ = {
 			isa = PBXGroup;
 			children = (
+				DF8BEB022A72214B005C396F /* Novel */,
 				DF553CC729726F39004C3428 /* Models */,
 				DF8D0A2E2800EE47003E4C3E /* Panel */,
 				DF7B18892830B4B1006A54C9 /* ReaderGateWay.swift */,
@@ -1120,6 +1137,45 @@
 			children = (
 			);
 			name = Packages;
+			sourceTree = "<group>";
+		};
+		DF8BEB022A72214B005C396F /* Novel */ = {
+			isa = PBXGroup;
+			children = (
+				DF8BEB0B2A7221B0005C396F /* Controllers */,
+				DF8BEB0A2A7221AC005C396F /* Views */,
+				DF8BEB052A72217B005C396F /* Actors */,
+				DF8BEB032A722163005C396F /* NovelViewer.swift */,
+			);
+			path = Novel;
+			sourceTree = "<group>";
+		};
+		DF8BEB052A72217B005C396F /* Actors */ = {
+			isa = PBXGroup;
+			children = (
+				DF8BEB062A72218F005C396F /* NV+ViewModel.swift */,
+				DF8BEB082A722197005C396F /* NV+RealmActor.swift */,
+			);
+			path = Actors;
+			sourceTree = "<group>";
+		};
+		DF8BEB0A2A7221AC005C396F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		DF8BEB0B2A7221B0005C396F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				DF8BEB0C2A723486005C396F /* NV+Representable.swift */,
+				DF8BEB0E2A723499005C396F /* NV+Container.swift */,
+				DF8BEB102A7234A0005C396F /* NV+Page.swift */,
+				DF8BEB122A7234A8005C396F /* NV+WebView.swift */,
+				DF8BEB142A7235B2005C396F /* NV+Coordinator.swift */,
+			);
+			path = Controllers;
 			sourceTree = "<group>";
 		};
 		DF8D09DF2800EE47003E4C3E /* iOS */ = {
@@ -2249,6 +2305,7 @@
 				DF1EA4472A70B7FF003E27C7 /* SourceDownloadView.swift in Sources */,
 				DF16F2BC2A5F4F4F00D7AFBB /* DV+ResultsView.swift in Sources */,
 				DF16F2C12A5F5F0D00D7AFBB /* DV+HistoryView.swift in Sources */,
+				DF8BEB0D2A723486005C396F /* NV+Representable.swift in Sources */,
 				DF8D0B492800EE47003E4C3E /* Data+SearchHistory.swift in Sources */,
 				DFFC1EBE280636130069AA0E /* Vertical+Representable.swift in Sources */,
 				DF52FBC22896F762008FAD3A /* CollectionManagementView.swift in Sources */,
@@ -2266,6 +2323,7 @@
 				DFCE6EB828014F8D002E220C /* ReaderCustomOverlay.swift in Sources */,
 				DF47DDDE28B55BA600D779E5 /* AdaptiveSheet.swift in Sources */,
 				DF482EF2295554E8002D3308 /* VerticalPaged+Representable.swift in Sources */,
+				DF8BEB072A72218F005C396F /* NV+ViewModel.swift in Sources */,
 				DFBBB7492974A894001DAAE9 /* DoublePaged+ImageCell.swift in Sources */,
 				DF9BFDF52A42754B005D0B63 /* DV+ViewModel.swift in Sources */,
 				DF7B188A2830B4B1006A54C9 /* ReaderGateWay.swift in Sources */,
@@ -2368,6 +2426,7 @@
 				DF248F2B2813B24F00818300 /* BarChartView.swift in Sources */,
 				DFD1F9B728F7B097000766C1 /* Vertical+Combine.swift in Sources */,
 				DF457DCB2A438DE0002B5350 /* DV+Base.swift in Sources */,
+				DF8BEB112A7234A0005C396F /* NV+Page.swift in Sources */,
 				DFC9B0F7280A67A400C675EF /* Vertical+Zoomable.swift in Sources */,
 				DF8D0B5F2800EE47003E4C3E /* Reader+TransitionView.swift in Sources */,
 				DF91D9742859ADD60099D864 /* CloudflareErrorView.swift in Sources */,
@@ -2383,6 +2442,8 @@
 				DF8D0B432800EE47003E4C3E /* Data+StoredChapter.swift in Sources */,
 				DF8D0BB22800EE48003E4C3E /* MarkDownView.swift in Sources */,
 				DF67EB8C28E3F22700076FF5 /* Logger.swift in Sources */,
+				DF8BEB0F2A723499005C396F /* NV+Container.swift in Sources */,
+				DF8BEB092A722197005C396F /* NV+RealmActor.swift in Sources */,
 				DF8D0B252800EE47003E4C3E /* LocalAuthManager.swift in Sources */,
 				DFBE48422A25BCD1000ABA16 /* ChapterData.swift in Sources */,
 				DF8D0B452800EE47003E4C3E /* Data+ValueStore.swift in Sources */,
@@ -2409,6 +2470,7 @@
 				DF8D0B7B2800EE48003E4C3E /* LibraryGrid+GridView.swift in Sources */,
 				DF9BFDF02A425BBB005D0B63 /* LocalObserver.swift in Sources */,
 				DFBE48542A25BEA0000ABA16 /* TrackerLink.swift in Sources */,
+				DF8BEB152A7235B2005C396F /* NV+Coordinator.swift in Sources */,
 				DF8D0BB02800EE48003E4C3E /* CloseButton.swift in Sources */,
 				DF83DD3328223B680021575B /* ProfileView+TrackersSheet.swift in Sources */,
 				DFF09B612A5A0BAC00C5CA5E /* TrackerEntryFormView.swift in Sources */,
@@ -2434,6 +2496,7 @@
 				DF1FD5C2284B31AB00A67F0E /* DoublePaged+Representable.swift in Sources */,
 				DF8D0BA22800EE48003E4C3E /* UpdateFeedTile.swift in Sources */,
 				DF482EF829555A43002D3308 /* VerticalPaged+ContextMenu.swift in Sources */,
+				DF8BEB042A722163005C396F /* NovelViewer.swift in Sources */,
 				DF01DEEA2A587A5D0025700B /* Engine+LibraryUpdate.swift in Sources */,
 				DF8D0B772800EE48003E4C3E /* Library+CollectionView.swift in Sources */,
 				DF2D84302A21C4B2006B17F0 /* Data+ContentMarker.swift in Sources */,
@@ -2507,6 +2570,7 @@
 				DF9BD64A2891D837006628D0 /* DSK+Chapter.swift in Sources */,
 				DFD1F9B528F7B076000766C1 /* Vertical+Prefetching.swift in Sources */,
 				DF67EB9128E4CB6500076FF5 /* ToastManager.swift in Sources */,
+				DF8BEB132A7234A8005C396F /* NV+WebView.swift in Sources */,
 				DF8D0B962800EE48003E4C3E /* ProfileView+Covers.swift in Sources */,
 				DF8D0B6B2800EE48003E4C3E /* HorizontalSlider.swift in Sources */,
 				DF9BD6462891C16D006628D0 /* DSK+Tag.swift in Sources */,

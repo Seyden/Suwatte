@@ -32,6 +32,9 @@ struct SuwatteApp: App {
                 .task {
                     await SDM.shared.appDidStart()
                 }
+                .fullScreenCover(isPresented: Binding.constant(true)) {
+                    NovelViewer()
+                }
         }
     }
 }

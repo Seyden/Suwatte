@@ -12,6 +12,7 @@ struct DBRunner: Identifiable, Hashable {
     let id: String
     let thumbnail: String
     let name: String
+    let version: Double
     let intents: RunnerIntents
     let environment: RunnerEnvironment
     let listURL: String?
@@ -146,6 +147,7 @@ extension CDRunner {
         .init(id: runnerID,
               thumbnail: thumbnail,
               name: name,
+              version: version,
               intents: intents,
               environment: environment,
               listURL: listURL)

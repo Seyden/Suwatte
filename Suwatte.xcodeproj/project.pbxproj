@@ -162,7 +162,6 @@
 		DF5E3D6E2B3026C100F1722C /* RunnerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D6D2B3026C100F1722C /* RunnerInfoView.swift */; };
 		DF5E3D712B3030D500F1722C /* CDRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D702B3030D500F1722C /* CDRunner.swift */; };
 		DF5E3D782B30E8FE00F1722C /* PageLinkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D772B30E8FE00F1722C /* PageLinkProvider.swift */; };
-		DF5E3D7A2B30EC4F00F1722C /* Realm+Runner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D792B30EC4F00F1722C /* Realm+Runner.swift */; };
 		DF60FF212B2D5C0900E1683A /* LibraryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF202B2D5C0900E1683A /* LibraryGateway.swift */; };
 		DF60FF242B2D5E0200E1683A /* CompactLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF232B2D5E0200E1683A /* CompactLibraryView.swift */; };
 		DF60FF262B2D664B00E1683A /* CollectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF252B2D664B00E1683A /* CollectionPickerView.swift */; };
@@ -639,7 +638,6 @@
 		DF5E3D6D2B3026C100F1722C /* RunnerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerInfoView.swift; sourceTree = "<group>"; };
 		DF5E3D702B3030D500F1722C /* CDRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRunner.swift; sourceTree = "<group>"; };
 		DF5E3D772B30E8FE00F1722C /* PageLinkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLinkProvider.swift; sourceTree = "<group>"; };
-		DF5E3D792B30EC4F00F1722C /* Realm+Runner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = "Realm+Runner.swift"; path = "../../../../../../../../.Trash/Realm+Runner.swift"; sourceTree = "<group>"; };
 		DF60FF202B2D5C0900E1683A /* LibraryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryGateway.swift; sourceTree = "<group>"; };
 		DF60FF232B2D5E0200E1683A /* CompactLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLibraryView.swift; sourceTree = "<group>"; };
 		DF60FF252B2D664B00E1683A /* CollectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPickerView.swift; sourceTree = "<group>"; };
@@ -1181,7 +1179,6 @@
 				DF2783362A799C7E0098BBA9 /* Realm+ProgressMarker.swift */,
 				DF27833E2A799E8D0098BBA9 /* Realm+OPDS.swift */,
 				DF2783402A799ECE0098BBA9 /* Realm+Archive.swift */,
-				DF5E3D792B30EC4F00F1722C /* Realm+Runner.swift */,
 				DF2783422A799F290098BBA9 /* Realm+Search.swift */,
 				DF2783442A799F690098BBA9 /* Realm+ValueStore.swift */,
 				DF2783462A799FAB0098BBA9 /* Realm+Library.swift */,
@@ -3057,7 +3054,6 @@
 				DF8D0B9A2800EE48003E4C3E /* ProfileView+BottomBar.swift in Sources */,
 				DF16F2B82A5F474F00D7AFBB /* DirectoryView.swift in Sources */,
 				DFE1B1152A9FEFD600D300DB /* Backup+ChapterReference.swift in Sources */,
-				DF5E3D7A2B30EC4F00F1722C /* Realm+Runner.swift in Sources */,
 				DF16F2B32A5F31F000D7AFBB /* DSK+Directory.swift in Sources */,
 				DFF1044228A9A89700E2C3A4 /* STT+JSValue.swift in Sources */,
 				DF1114862A92F04800FA8A39 /* WebtoonController+Slider.swift in Sources */,

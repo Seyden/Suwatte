@@ -16,7 +16,7 @@ extension Sequence where Element: Hashable {
 
 struct LibraryStatistics: Hashable {
     let total: Int
-    let runners: [StoredRunnerObject: Int]
+    let runners: [DBRunner: Int]
     let status: [ContentStatus: Int]
     let flag: [LibraryFlag: Int]
     let type: [ExternalContentType: Int]
@@ -72,19 +72,20 @@ extension RealmActor {
             .where { !$0.isDeleted }
             .count
 
-        var runnerMap: [StoredRunnerObject: Int] = [:]
+        var runnerMap: [DBRunner: Int] = [:]
 
-        let runners = getSavedAndEnabledSources()
-
-        for source in runners {
-            let sourceID = source.id
-            let count = realm
-                .objects(LibraryEntry.self)
-                .where { !$0.isDeleted && $0.content.sourceId == sourceID }
-                .count
-
-            runnerMap[source] = count
-        }
+        // FIXME: Get sources
+//        let runners = getSavedAndEnabledSources()
+//
+//        for source in runners {
+//            let sourceID = source.id
+//            let count = realm
+//                .objects(LibraryEntry.self)
+//                .where { !$0.isDeleted && $0.content.sourceId == sourceID }
+//                .count
+//
+//            runnerMap[source] = count
+//        }
 
         let nsfw = realm
             .objects(LibraryEntry.self)

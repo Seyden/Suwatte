@@ -285,7 +285,7 @@ extension LibraryView {
 extension LibraryView {
     struct LibrarySectionOrderSheet: View {
         @AppStorage(STTKeys.LibrarySections) var sections = DEFAULT_LIBRARY_SECTIONS
-        @State var priviledgedRunners = [StoredRunnerObject]()
+        @State var priviledgedRunners = [DBRunner]()
         var availableSections: [String] {
             getAvailableSections()
         }
@@ -335,8 +335,7 @@ extension LibraryView {
                 }
             }
             .task {
-                let actor = await RealmActor.shared()
-                priviledgedRunners = await actor.getLibraryPageProviders()
+                priviledgedRunners = CDRunner.getAll().filter({ $0.intents.libraryPageLinkProvider })
             }
         }
 

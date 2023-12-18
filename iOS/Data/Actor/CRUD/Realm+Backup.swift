@@ -27,16 +27,6 @@ extension RealmActor {
             .where { $0.currentChapter != nil && $0.currentChapter.content != nil && !$0.isDeleted }
             .freeze()
 
-        let lists = realm
-            .objects(StoredRunnerList.self)
-            .where { !$0.isDeleted }
-            .freeze()
-
-        let runners = realm
-            .objects(StoredRunnerObject.self)
-            .where { !$0.isDeleted }
-            .freeze()
-
         var backup = Backup()
 
         backup.progressMarkers = progressMarkers.toArray()
@@ -145,8 +135,6 @@ extension RealmActor {
             realm.objects(UpdatedBookmark.self).setValue(true, forKey: "isDeleted")
             realm.objects(ReadLater.self).setValue(true, forKey: "isDeleted")
             realm.objects(ProgressMarker.self).setValue(true, forKey: "isDeleted")
-            realm.objects(StoredRunnerList.self).setValue(true, forKey: "isDeleted")
-            realm.objects(StoredRunnerObject.self).setValue(true, forKey: "isDeleted")
             realm.objects(CustomThumbnail.self).setValue(true, forKey: "isDeleted")
             realm.objects(ChapterReference.self).setValue(true, forKey: "isDeleted")
             realm.objects(StreamableOPDSContent.self).setValue(true, forKey: "isDeleted")

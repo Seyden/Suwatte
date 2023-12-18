@@ -6,15 +6,19 @@
 //
 
 import RealmSwift
+import CoreData
 import SwiftUI
 
 struct InstalledRunnersView: View {
+    @FetchRequest(fetchRequest: CDRunner.fetchAllRequest(), animation: .default)
+    private var records: FetchedResults<CDRunner>
+    
+    
     private let engine = DSK.shared
-    @StateObject var model = ViewModel()
-    @State var showAddSheet = false
+    @State private var showAddSheet = false
 
-    var groups: [RunnerEnvironment: [StoredRunnerObject]] {
-        Dictionary(grouping: model.runners, by: \.safeEnvironment)
+    private var groups: [RunnerEnvironment: [DBRunner]] {
+        Dictionary(grouping: records.map({ $0.toDB() }), by: \.environment)
     }
 
     private var items: [RunnerEnvironment] {
@@ -36,10 +40,6 @@ struct InstalledRunnersView: View {
             .transition(.opacity)
         }
         .navigationTitle("Installed Runners")
-        .task {
-            await model.observe()
-        }
-        .onDisappear(perform: model.disconnect)
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button { showAddSheet.toggle() } label: {
@@ -47,7 +47,6 @@ struct InstalledRunnersView: View {
                 }
             }
         }
-        .animation(.default, value: model.runners)
         .fileImporter(isPresented: $showAddSheet, allowedContentTypes: [.init(filenameExtension: "stt")!]) { result in
 
             guard let path = try? result.get() else {
@@ -73,7 +72,7 @@ struct InstalledRunnersView: View {
         }
     }
 
-    func Cell(_ runner: StoredRunnerObject) -> some View {
+    func Cell(_ runner: DBRunner) -> some View {
         NavigationLink {
             Gateway(runnerID: runner.id)
                 .navigationTitle(runner.name)
@@ -90,16 +89,16 @@ struct InstalledRunnersView: View {
                             .font(.footnote.weight(.light))
                             .foregroundColor(.secondary)
 
-                        if runner.isInstantiable {
-                            Text("\(Image(systemName: "doc.on.doc"))")
-                                .font(.footnote.weight(.light))
-                                .foregroundColor(.secondary)
-                        }
+                        // FIXME: is instantiable
+//                        if runner.intents. {
+//                            Text("\(Image(systemName: "doc.on.doc"))")
+//                                .font(.footnote.weight(.light))
+//                                .foregroundColor(.secondary)
+//                        }
                     }
                 }
             }
         }
-        .disabled(!runner.enabled)
         .swipeActions {
             Button {
                 Task {
@@ -112,43 +111,15 @@ struct InstalledRunnersView: View {
             }
             .tint(.red)
 
-            if runner.isInstantiable && runner.enabled {
-                Button {
-                    Task {
-                        let actor = await RealmActor.shared()
-                        await actor.createNewInstance(of: runner.id)
-                    }
-                } label: {
-                    Label("New", systemImage: "plus")
-                }
-                .tint(.blue)
-            }
-        }
-    }
-}
-
-extension InstalledRunnersView {
-    final class ViewModel: ObservableObject {
-        @Published var runners: [StoredRunnerObject] = []
-        private var token: NotificationToken?
-
-        func observe() async {
-            token?.invalidate()
-            token = nil
-
-            let actor = await RealmActor.shared()
-
-//            token = await actor
-//                .observeInstalledRunners(onlyEnabled: false) { value in
-//                    Task { @MainActor in
-//                        self.runners = value
-//                    }
+            // FIXME: Instantiable
+//            if runner.isInstantiable {
+//                Button {
+//                    // FIXME: Create New Instance
+//                } label: {
+//                    Label("New", systemImage: "plus")
 //                }
-        }
-
-        func disconnect() {
-            token?.invalidate()
-            token = nil
+//                .tint(.blue)
+//            }
         }
     }
 }

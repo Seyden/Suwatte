@@ -159,6 +159,8 @@
 		DF5E3D532B30032B00F1722C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D512B30032B00F1722C /* Model.xcdatamodeld */; };
 		DF5E3D572B300C9200F1722C /* CDRunnerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D562B300C9200F1722C /* CDRunnerList.swift */; };
 		DF5E3D5D2B30109B00F1722C /* CDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D5C2B30109B00F1722C /* CDManager.swift */; };
+		DF5E3D6B2B30257B00F1722C /* RunnerListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D6A2B30257B00F1722C /* RunnerListInfoView.swift */; };
+		DF5E3D6E2B3026C100F1722C /* RunnerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D6D2B3026C100F1722C /* RunnerInfoView.swift */; };
 		DF60FF212B2D5C0900E1683A /* LibraryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF202B2D5C0900E1683A /* LibraryGateway.swift */; };
 		DF60FF242B2D5E0200E1683A /* CompactLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF232B2D5E0200E1683A /* CompactLibraryView.swift */; };
 		DF60FF262B2D664B00E1683A /* CollectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF252B2D664B00E1683A /* CollectionPickerView.swift */; };
@@ -632,6 +634,8 @@
 		DF5E3D522B30032B00F1722C /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
 		DF5E3D562B300C9200F1722C /* CDRunnerList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRunnerList.swift; sourceTree = "<group>"; };
 		DF5E3D5C2B30109B00F1722C /* CDManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDManager.swift; sourceTree = "<group>"; };
+		DF5E3D6A2B30257B00F1722C /* RunnerListInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerListInfoView.swift; sourceTree = "<group>"; };
+		DF5E3D6D2B3026C100F1722C /* RunnerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerInfoView.swift; sourceTree = "<group>"; };
 		DF60FF202B2D5C0900E1683A /* LibraryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryGateway.swift; sourceTree = "<group>"; };
 		DF60FF232B2D5E0200E1683A /* CompactLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLibraryView.swift; sourceTree = "<group>"; };
 		DF60FF252B2D664B00E1683A /* CollectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPickerView.swift; sourceTree = "<group>"; };
@@ -1005,6 +1009,8 @@
 			isa = PBXGroup;
 			children = (
 				DFC39E9428A093D700450EC4 /* RunnerListsView.swift */,
+				DF5E3D6A2B30257B00F1722C /* RunnerListInfoView.swift */,
+				DF5E3D6D2B3026C100F1722C /* RunnerInfoView.swift */,
 			);
 			path = SavedLists;
 			sourceTree = "<group>";
@@ -2975,6 +2981,7 @@
 				DF9BFE1E2A428A73005D0B63 /* AH+Rar.swift in Sources */,
 				DFC383992AB4195C003903FA /* Realm+RunnerUpdate.swift in Sources */,
 				DF2783452A799F690098BBA9 /* Realm+ValueStore.swift in Sources */,
+				DF5E3D6E2B3026C100F1722C /* RunnerInfoView.swift in Sources */,
 				DFD4D8682A7AD20300C5AC13 /* Realm+Observer.swift in Sources */,
 				DF8D0BB82800EE48003E4C3E /* SelectionLabel.swift in Sources */,
 				DF33AC122A70046B00D2993A /* SDM+Database.swift in Sources */,
@@ -3055,6 +3062,7 @@
 				DF8D0B342800EE47003E4C3E /* STT+Bundle.swift in Sources */,
 				DFDBF9932A7C74B9006D49AD /* Source+Protocol.swift in Sources */,
 				DF489C292A830350006A21B9 /* IV+PagingController.swift in Sources */,
+				DF5E3D6B2B30257B00F1722C /* RunnerListInfoView.swift in Sources */,
 				DF62B5C52A970BF300F907CD /* CPVM+Models.swift in Sources */,
 				DF020A4A2A8B120700BC5562 /* IV+ChapterList.swift in Sources */,
 				DF8D0B742800EE48003E4C3E /* LibraryGrid+GridTile.swift in Sources */,

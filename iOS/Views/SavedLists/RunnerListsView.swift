@@ -11,37 +11,16 @@ import RealmSwift
 import SwiftUI
 
 struct RunnerListsView: View {
-    @State var presentAlert = false
-    @StateObject var model = ViewModel()
-    @AppStorage(STTKeys.AppAccentColor) var color: Color = .sttDefault
+    @FetchRequest(fetchRequest: CDRunnerList.fetch(), animation: .default)
+    private var records: FetchedResults<CDRunnerList>
+    
+    @AppStorage(STTKeys.AppAccentColor)
+    private var color: Color = .sttDefault
+    
     var body: some View {
         List {
-            ForEach(model.savedLists) { list in
-                NavigationLink {
-                    RunnerListInfo(listURL: list.url)
-                        .navigationTitle(list.listName ?? list.url)
-                        .navigationBarTitleDisplayMode(.inline)
-                } label: {
-                    VStack(alignment: .leading, spacing: 5) {
-                        Text(list.listName ?? list.url)
-                            .font(.headline)
-                        if list.listName != nil {
-                            Text(URL(string: list.url)?.sttBase?.absoluteString ?? list.url)
-                                .font(.subheadline)
-                                .fontWeight(.light)
-                                .opacity(0.65)
-                        }
-                    }
-                }
-                .swipeActions(allowsFullSwipe: true) {
-                    Button {
-                        Task {
-                            await RealmActor.shared().removeRunnerList(with: list.url)
-                        }
-                    } label: {
-                        Label("Delete", systemImage: "trash")
-                    }
-                }
+            ForEach(records) {
+                Cell(entry: $0)
             }
         }
         .navigationTitle("Saved Lists")
@@ -49,27 +28,53 @@ struct RunnerListsView: View {
         .toolbar {
             ToolbarItem(placement: .navigationBarTrailing) {
                 Button("\(Image(systemName: "plus"))") {
-                    presentAlert.toggle()
+                    promptURL()
                 }
             }
         }
-        .onChange(of: presentAlert) { newValue in
-            if newValue {
-                promptURL()
-            }
-        }
-        .environmentObject(model)
-        .task {
-            await model.observe()
-        }
-        .onDisappear(perform: model.stopObserving)
-        .animation(.default, value: model.savedLists)
-        .animation(.default, value: model.savedRunners)
     }
 }
 
+// MARK: - Cell
 extension RunnerListsView {
-    func handleSubmit(url: String) async {
+    private struct Cell: View {
+        let entry : CDRunnerList
+        
+        var body : some View {
+            NavigationLink {
+                RunnerListInfo(listURL: entry.url)
+                    .navigationTitle(entry.displayName)
+                    .navigationBarTitleDisplayMode(.inline)
+            } label: {
+                VStack(alignment: .leading, spacing: 5) {
+                    Text(entry.displayName)
+                        .font(.headline)
+                    if entry.hasName {
+                        Text(base)
+                            .font(.subheadline)
+                            .fontWeight(.light)
+                            .opacity(0.65)
+                    }
+                }
+            }
+            .swipeActions(allowsFullSwipe: true) {
+                Button {
+                    CDRunnerList.delete(entry: entry)
+                } label: {
+                    Label("Delete", systemImage: "trash")
+                }
+            }
+        }
+        
+        var base : String {
+            URL(string: entry.url)?.sttBase?.absoluteString ?? entry.url
+        }
+    }
+}
+
+// MARK: - Methods
+extension RunnerListsView {
+    private func handleSubmit(url: String) async {
         if url.isEmpty { return }
         do {
             try await DSK.shared.saveRunnerList(at: url)
@@ -79,10 +84,9 @@ extension RunnerListsView {
             ToastManager.shared.error(error)
             Logger.shared.error(error)
         }
-        presentAlert = false
     }
 
-    func promptURL() {
+    private func promptURL() {
         let ac = UIAlertController(title: "Enter List URL", message: "Suwatte will parse valid URLS.", preferredStyle: .alert)
         ac.addTextField()
         let field = ac.textFields![0]
@@ -98,7 +102,6 @@ extension RunnerListsView {
             }
         }
         ac.addAction(.init(title: "Cancel", style: .cancel, handler: { _ in
-            presentAlert = false
         }))
         ac.addAction(submitAction)
 

@@ -66,12 +66,6 @@ final actor DaisukeEngine {
 }
 
 extension DaisukeEngine {
-    private func executeableURL(for id: String) -> URL {
-        let fileName = STTHelpers.sha256(of: id) + ".stt"
-        let file = directory
-            .appendingPathComponent(fileName)
-        return file
-    }
 
     private func validateRunnerVersion(runner: AnyRunner) async throws {
         // Validate that the incoming runner has a higher version
@@ -87,28 +81,27 @@ extension DaisukeEngine {
 
 extension DaisukeEngine {
     func startRunner(_ id: String) async throws -> AnyRunner {
-        let actor = await RealmActor.shared()
-        let file = await actor.getRunnerExecutable(id: id)
-
-        guard let file, file.exists else {
-            let standardLocation = executeableURL(for: id)
-            if standardLocation.exists {
-                return try await startRunner(standardLocation, for: id)
-            } else {
-                throw DSK.Errors.RunnerExecutableNotFound(id: id)
-            }
+        let executable = try CDRunner.getExecutable(for: id)
+        
+        guard let executable, let script = String(data: executable, encoding: .utf8) else {
+            throw DSK.Errors.NamedError(name: "DSK", message: "Runner Not Found")
         }
+        
+        return try await startRunner(script, for: id)
+    }
+    
+    
+    func startRunner(_ script: String, for id: String? = nil) async throws -> AnyRunner {
+        let hasWKDirective = script.contains("dsk use webkit")
+        let runner = try await hasWKDirective ? startWKRunner(with: script, for: id) : startJSCRunner(with: script, for: id)
 
-        return try await startRunner(file, for: id)
+        didStartRunner(runner)
+        return runner
     }
 
     func startRunner(_ url: URL, for id: String? = nil) async throws -> AnyRunner {
         let content = try String(contentsOf: url, encoding: .utf8)
-        let hasWKDirective = content.contains("dsk use webkit")
-        let runner = try await hasWKDirective ? startWKRunner(with: url, for: id) : startJSCRunner(with: url, for: id)
-
-        didStartRunner(runner)
-        return runner
+        return try await startRunner(content, for: id)
     }
 }
 
@@ -143,11 +136,10 @@ extension DaisukeEngine {
 
     func removeRunner(_ id: String) {
         runners.removeValue(forKey: id)
-        Task {
-            let actor = await RealmActor.shared()
-            let path = await actor.getFrozenRunner(id)?.executable?.filePath ?? executeableURL(for: id)
-            try? FileManager.default.removeItem(at: path)
-            await actor.deleteRunner(id)
+        do {
+            try CDRunner.remove(id: id)
+        } catch {
+            Logger.shared.error(error)
         }
     }
 }
@@ -192,15 +184,13 @@ extension DaisukeEngine {
         let runner = try await startRunner(url) // Start up
         try await validateRunnerVersion(runner: runner) // check if is new version
 
-        let runnerPath = executeableURL(for: runner.id)
-        _ = try FileManager.default.replaceItemAt(runnerPath, withItemAt: url)
-        await upsertStoredRunner(runner)
+        try updateRunnerRecord(runner, script: url)
         didStartRunner(runner)
     }
 
-    private func upsertStoredRunner(_ runner: AnyRunner, listURL: URL? = nil) async {
-        let actor = await RealmActor.shared()
-        await actor.saveRunner(runner, listURL: listURL, url: executeableURL(for: runner.id))
+    private func updateRunnerRecord(_ r: AnyRunner, script: URL, list: URL? = nil) throws {
+        let data = try Data(contentsOf: script)
+        CDRunner.add(data: r.info, environment: r.environment, list: list, file: data)
     }
 }
 
@@ -247,11 +237,13 @@ extension DaisukeEngine {
         let runner = try await startRunner(downloadURL)
         try await validateRunnerVersion(runner: runner)
 
-        let runnerPath = executeableURL(for: runner.id)
-        _ = try FileManager.default.replaceItemAt(runnerPath, withItemAt: downloadURL)
-        try? FileManager.default.removeItem(at: downloadURL)
+
+        defer {
+            try? FileManager.default.removeItem(at: downloadURL)
+        }
+        
         addRunner(runner, listURL: list)
-        await upsertStoredRunner(runner, listURL: list)
+        try updateRunnerRecord(runner, script: downloadURL, list: list)
     }
 }
 
@@ -314,13 +306,12 @@ extension DaisukeEngine {
     }
 
     func getActiveSources() async -> [AnyContentSource] {
-        let actor = await RealmActor.shared()
-        let runners = await actor.getSavedAndEnabledSources().map(\.id)
+        let runners = CDRunner.getAll().filter({ $0.environment == .source })
 
         let sources = await withTaskGroup(of: AnyContentSource?.self, body: { group in
             for runner in runners {
                 group.addTask {
-                    await self.getSource(id: runner)
+                    await self.getSource(id: runner.id)
                 }
             }
 
@@ -376,13 +367,12 @@ extension DaisukeEngine {
     }
 
     func getActiveTrackers() async -> [AnyContentTracker] {
-        let actor = await RealmActor.shared()
-        let runners = await actor.getEnabledRunners(for: .tracker).map(\.id)
+        let runners = CDRunner.getAll().filter({ $0.environment == .tracker })
 
         let trackers = await withTaskGroup(of: AnyContentTracker?.self, body: { [runners] group in
             for runner in runners {
                 group.addTask {
-                    await self.getTracker(id: runner)
+                    await self.getTracker(id: runner.id)
                 }
             }
 

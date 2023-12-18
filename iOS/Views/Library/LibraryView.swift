@@ -14,9 +14,6 @@ struct LibraryView: View {
     @StateObject var pageProviderModel = PageLinkProviderModel(isForBrowsePage: false)
     @State var presentCollectionSheet = false
     @State var presentOrderSheet = false
-    @State var openFirstCollection = false
-    @State var hasOpenedFirst = false
-    @AppStorage(STTKeys.OpenAllTitlesOnAppear) var openAllOnAppear = false
     @AppStorage(STTKeys.LibraryAuth) var requireAuth = false
     @State var hasLoadedPages = false
     @AppStorage(STTKeys.UseCompactLibraryView) var useCompactView = false
@@ -72,28 +69,12 @@ struct LibraryView: View {
                 }
 
             })
-            .hiddenNav(presenting: $openFirstCollection) {
-                LibraryGrid(collection: nil, readingFlag: nil)
-            }
-        
-        .task {
-            if requireAuth && !LocalAuthManager.shared.isExpired {
-                return
-            }
-
-            if openAllOnAppear  && !hasOpenedFirst {
-                withAnimation {
-                    openFirstCollection = true
-                    hasOpenedFirst = true
-                }
-            }
-        }
         .sheet(isPresented: $presentCollectionSheet) {
             ManageCollectionsView()
         }
         .task {
             guard !hasLoadedPages else { return }
-            await pageProviderModel.observe()
+            pageProviderModel.fetch()
             hasLoadedPages = true
         }
         .onChange(of: sections) { _ in
@@ -104,9 +85,6 @@ struct LibraryView: View {
         }
         .onReceive(StateManager.shared.libraryUpdateRunnerPageLinks) { _ in
             hasLoadedPages = false
-        }
-        .onDisappear {
-            pageProviderModel.stopObserving()
         }
         .animation(.default, value: pageProviderModel.links)
         .animation(.default, value: pageProviderModel.runners)
@@ -143,10 +121,10 @@ extension LibraryView {
         let key: String
         @EnvironmentObject var model: PageLinkProviderModel
 
-        private var providers: [StoredRunnerObject] {
+        private var providers: [DBRunner] {
             model
                 .runners
-                .filter { $0.isLibraryPageLinkProvider }
+                .filter { $0.intents.libraryPageLinkProvider }
         }
 
         var body: some View {
@@ -178,7 +156,7 @@ extension LibraryView {
 
 extension LibraryView {
     struct PageLinkSectionView: View {
-        let runner: StoredRunnerObject
+        let runner: DBRunner
         let pageLinks: [DSKCommon.PageLinkLabel]
 
         var body: some View {

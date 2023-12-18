@@ -9,8 +9,9 @@ import Foundation
 import RealmSwift
 
 struct Backup: Codable {
-    var lists: [StoredRunnerList]?
-    var runners: [StoredRunnerObject]?
+    // FIXME: Update
+//    var lists: [StoredRunnerList]?
+//    var runners: [StoredRunnerObject]?
 
     var library: [CodableLibraryEntry]?
     var collections: [LibraryCollection]?

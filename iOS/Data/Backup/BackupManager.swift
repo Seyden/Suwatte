@@ -80,25 +80,26 @@ class BackupManager: ObservableObject {
             throw BackUpError.InvalidBackup
         }
 
-        let runners = backup.runners?.map { ($0.id, $0.listURL) } ?? []
-
-        // Install
-        try await restoreDB(backup: backup)
-
-        guard !runners.isEmpty && backup.schemaVersion >= 14 else { return }
-
-        await withTaskGroup(of: Void.self) { group in
-            for runner in runners {
-                guard let url = URL(string: runner.1) else { return }
-                group.addTask {
-                    do {
-                        try await DSK.shared.importRunner(from: url, with: runner.0)
-                    } catch {
-                        Logger.shared.error("Failed to install runner of \(runner.0). \(error)")
-                    }
-                }
-            }
-        }
+        // FIXME: This
+//        let runners = backup.runners?.map { ($0.id, $0.listURL) } ?? []
+//
+//        // Install
+//        try await restoreDB(backup: backup)
+//
+//        guard !runners.isEmpty && backup.schemaVersion >= 14 else { return }
+//
+//        await withTaskGroup(of: Void.self) { group in
+//            for runner in runners {
+//                guard let url = URL(string: runner.1) else { return }
+//                group.addTask {
+//                    do {
+//                        try await DSK.shared.importRunner(from: url, with: runner.0)
+//                    } catch {
+//                        Logger.shared.error("Failed to install runner of \(runner.0). \(error)")
+//                    }
+//                }
+//            }
+//        }
     }
 
     enum BackUpError: Error {

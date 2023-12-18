@@ -89,12 +89,13 @@ extension TrackerManagementView {
         }
 
         func load() async {
-            let object = await RealmActor.shared().getFrozenRunner(tracker.id)
-            await MainActor.run {
-                withAnimation {
-                    thumbnailURL = object?.thumbnail ?? ""
-                }
-            }
+            // FIXME: This
+//            let object = await RealmActor.shared().getFrozenRunner(tracker.id)
+//            await MainActor.run {
+//                withAnimation {
+//                    thumbnailURL = object?.thumbnail ?? ""
+//                }
+//            }
         }
     }
 }

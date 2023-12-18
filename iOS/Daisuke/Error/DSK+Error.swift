@@ -27,7 +27,7 @@ extension DaisukeEngine {
 
         case NetworkErrorFailedToConvertRequestObject
         case NetworkErrorInvalidRequestURL
-        case NamedError(name: String, message: String)
+        case NamedError(name: String = "Error", message: String)
         case NetworkError(message: String, response: String)
         case MethodNotFound(name: String)
         case ObjectConversionFailed

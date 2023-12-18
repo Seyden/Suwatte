@@ -79,7 +79,7 @@ extension CollectionManagementView {
         @State var contentStatuses: [ContentStatus]
         @State var titleText = ""
         @State var tagText = ""
-        @State var sources: [StoredRunnerObject] = []
+        @State var sources: [DBRunner] = []
         var body: some View {
             AdultContentSection
             TitlesSection
@@ -122,7 +122,7 @@ extension CollectionManagementView {
                 }
                 .task {
                     let actor = await RealmActor.shared()
-                    sources = await actor.getSavedAndEnabledSources()
+                    sources = CDRunner.getAll()
                 }
         }
     }

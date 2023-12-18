@@ -138,12 +138,12 @@ extension InstalledRunnersView {
 
             let actor = await RealmActor.shared()
 
-            token = await actor
-                .observeInstalledRunners(onlyEnabled: false) { value in
-                    Task { @MainActor in
-                        self.runners = value
-                    }
-                }
+//            token = await actor
+//                .observeInstalledRunners(onlyEnabled: false) { value in
+//                    Task { @MainActor in
+//                        self.runners = value
+//                    }
+//                }
         }
 
         func disconnect() {

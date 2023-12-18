@@ -42,8 +42,9 @@ extension RealmActor {
         backup.progressMarkers = progressMarkers.toArray()
         backup.library = libraryEntries.map(CodableLibraryEntry.from(entry:))
         backup.collections = collections.toArray()
-        backup.lists = lists.toArray()
-        backup.runners = runners.toArray()
+        // FIXME: Backups
+//        backup.lists = lists.toArray()
+//        backup.runners = runners.toArray()
 
         return backup
     }
@@ -75,9 +76,10 @@ extension RealmActor {
                 realm.add(collections, update: .all)
             }
 
-            if let runnerLists = backup.lists {
-                realm.add(runnerLists, update: .all)
-            }
+            // FIXME: backusp
+//            if let runnerLists = backup.lists {
+//                realm.add(runnerLists, update: .all)
+//            }
 
             if let markers = backup.progressMarkers {
                 realm.add(markers, update: .all)

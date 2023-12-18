@@ -9,11 +9,11 @@ import Foundation
 import WebKit
 
 extension DSK {
-    func startWKRunner(with url: URL, for id: String?) async throws -> WKRunner {
+    func startWKRunner(with script: String, for id: String?) async throws -> WKRunner {
         func generate(for path: URL) async throws -> WKUserScript {
             var content = try String(contentsOfFile: path.relativePath, encoding: String.Encoding.utf8)
             if path.lastPathComponent == "wkFills.js" {
-                content = content.replacingOccurrences(of: "ID_PLACEHOLDER", with: url.fileName)
+                content = content.replacingOccurrences(of: "ID_PLACEHOLDER", with: UUID().uuidString)
             }
             let imm = content
             let script = await MainActor.run {
@@ -43,7 +43,11 @@ extension DSK {
         for messageHandlerFile in messageHandlerFiles {
             try await scripts.append(generate(for: messageHandlerFile))
         }
-        try await scripts.append(generate(for: url))
+        
+        let contentScript =  await MainActor.run {
+            WKUserScript(source: script, injectionTime: .atDocumentStart, forMainFrameOnly: true, in: .defaultClient)
+        }
+        scripts.append(contentScript)
         try await scripts.append(generate(for: bootstrapFile))
 
         // Add Handlers

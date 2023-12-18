@@ -36,7 +36,7 @@ extension DaisukeEngine {
         context.evaluateScript(script)
     }
 
-    func bootstrapJSCRunner(_ scriptURL: URL) throws -> JSValue {
+    func bootstrapJSCRunner(_ script: String) throws -> JSValue {
         // Generate New Context
         let context = newJSCContext()
 
@@ -56,7 +56,7 @@ extension DaisukeEngine {
         let bootstrapFile = Bundle.main.url(forResource: "bridge", withExtension: "js")!
 
         // Declare Intial ID
-        context.globalObject.setValue(scriptURL.fileName, forProperty: "IDENTIFIER")
+        context.globalObject.setValue(UUID().uuidString, forProperty: "IDENTIFIER")
         // Evaluate Commons Script
         var content = try String(contentsOf: commonsPath, encoding: .utf8)
         _ = context.evaluateScript(content)
@@ -76,7 +76,7 @@ extension DaisukeEngine {
         }
 
         // Evalutate Runner Script
-        content = try String(contentsOf: scriptURL, encoding: .utf8)
+        content = script
         _ = context.evaluateScript(content)
 
         let error = context.exception
@@ -98,8 +98,8 @@ extension DaisukeEngine {
 }
 
 extension DaisukeEngine {
-    func startJSCRunner(with url: URL, for id: String?) async throws -> AnyRunner {
-        let runnerObject = try bootstrapJSCRunner(url)
+    func startJSCRunner(with script: String, for id: String?) async throws -> AnyRunner {
+        let runnerObject = try bootstrapJSCRunner(script)
 
         // Get Runner Environment
         let environment = runnerObject

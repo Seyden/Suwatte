@@ -26,8 +26,11 @@ public class JSCRunner: DSKRunner, JSCContextWrapper {
         runnerClass = object
 
         if let customID {
-            let actor = await RealmActor.shared()
-            customName = await actor.getRunnerName(for: customID)
+            let runner = try CDRunner.get(for: customID)
+            guard let runner else {
+                throw DSK.Errors.NamedError(name: "", message: "Satellite not found")
+            }
+            customName = runner.name
             object.context.evaluateScript("RunnerObject.info.id = '\(customID)';IDENTIFIER = '\(customID)'")
         }
 

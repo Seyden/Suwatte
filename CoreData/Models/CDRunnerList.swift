@@ -58,4 +58,18 @@ extension CDRunnerList {
         return request
     }
     
+    
+    static func noListInstalled(context: NSManagedObjectContext = CDManager.shared.context) -> Bool {
+        let request = Self.fetchRequest()
+        
+        do {
+            let result = try context.fetch(request)
+            
+            return result.isEmpty
+        } catch {
+            Logger.shared.error(error)
+            return true
+        }
+        
+    }
 }

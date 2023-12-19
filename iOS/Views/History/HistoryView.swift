@@ -114,11 +114,7 @@ extension HistoryView {
             downloader.download(file.url) { [weak self] result in
                 do {
                     let updatedFile = try result.get().convertToSTTFile()
-                    Task {
-                        let actor = await RealmActor.shared()
-                        await actor.saveArchivedFile(updatedFile)
-                    }
-
+                    CDArchive.add(updatedFile)
                     guard let self, !self.readerLock else { return }
                     updatedFile.read()
                 } catch {
@@ -145,22 +141,22 @@ extension HistoryView {
 //        else if let content = marker.currentChapter?.opds {
 //            content.read()
 //        }
-        else if let archive = marker.currentChapter?.archive {
-            do {
-                let file = try archive.getURL()?.convertToSTTFile()
-                guard let file else {
-                    throw DSK.Errors.NamedError(name: "FileManager", message: "Unable to locate file")
-                }
-                if !file.isOnDevice {
-                    model.downloadAndOpen(file: file)
-                } else {
-                    file.read()
-                }
-            } catch {
-                ToastManager.shared.error(error)
-                Logger.shared.error(error)
-            }
-        }
+//        else if let archive = marker.currentChapter?.archive {
+//            do {
+//                let file = try archive.getURL()?.convertToSTTFile()
+//                guard let file else {
+//                    throw DSK.Errors.NamedError(name: "FileManager", message: "Unable to locate file")
+//                }
+//                if !file.isOnDevice {
+//                    model.downloadAndOpen(file: file)
+//                } else {
+//                    file.read()
+//                }
+//            } catch {
+//                ToastManager.shared.error(error)
+//                Logger.shared.error(error)
+//            }
+//        }
     }
 
     struct Cell: View {
@@ -175,13 +171,13 @@ extension HistoryView {
 //                    else if let content = reference.opds {
 //                        OPDSCell(marker: marker, content: content, chapter: reference)
 //                    } 
-                    else if let content = reference.archive {
-                        if let file = try? content.getURL()?.convertToSTTFile() {
-                            ArchiveCell(marker: marker, archive: content, chapter: reference, file: file)
-                        } else {
-                            EmptyView()
-                        }
-                    }
+//                    else if let content = reference.archive {
+//                        if let file = try? content.getURL()?.convertToSTTFile() {
+//                            ArchiveCell(marker: marker, archive: content, chapter: reference, file: file)
+//                        } else {
+//                            EmptyView()
+//                        }
+//                    }
                 }
             }
             .animation(.default, value: marker.progress)

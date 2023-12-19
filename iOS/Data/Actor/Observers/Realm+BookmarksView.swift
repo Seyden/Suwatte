@@ -14,8 +14,8 @@ extension RealmActor {
             .objects(UpdatedBookmark.self)
             .where { !$0.isDeleted }
             .where { $0.chapter != nil }
-            .where { $0.chapter.content.id == id ||
-                $0.chapter.archive.id == id
+            .where { $0.chapter.content.id == id
+//                $0.chapter.archive.id == id
             }
             .where { $0.asset != nil }
             .sorted(by: \.dateAdded, ascending: false)

@@ -273,26 +273,26 @@ extension StateManager {
                 }
 
             }
-            else if let content = reference.archive {
-                let file = try content
-                    .getURL()?
-                    .convertToSTTFile()
-                let chapter = file?.toReadableChapter()
-                guard let file, let chapter else {
-                    throw errors.NamedError(name: "StateManager", message: "failed to convert to readable chapter")
-                }
-
-                let state: ReaderState = .init(title: file.cName,
-                                               chapter: chapter,
-                                               chapters: [chapter],
-                                               requestedPage: bookmark.page - 1,
-                                               requestedOffset: bookmark.pageOffsetPCT,
-                                               readingMode: nil,
-                                               dismissAction: nil)
-                await MainActor.run { [weak self] in
-                    self?.openReader(state: state)
-                }
-            }
+//            else if let content = reference.archive {
+//                let file = try content
+//                    .getURL()?
+//                    .convertToSTTFile()
+//                let chapter = file?.toReadableChapter()
+//                guard let file, let chapter else {
+//                    throw errors.NamedError(name: "StateManager", message: "failed to convert to readable chapter")
+//                }
+//
+//                let state: ReaderState = .init(title: file.cName,
+//                                               chapter: chapter,
+//                                               chapters: [chapter],
+//                                               requestedPage: bookmark.page - 1,
+//                                               requestedOffset: bookmark.pageOffsetPCT,
+//                                               readingMode: nil,
+//                                               dismissAction: nil)
+//                await MainActor.run { [weak self] in
+//                    self?.openReader(state: state)
+//                }
+//            }
         }
     }
 }

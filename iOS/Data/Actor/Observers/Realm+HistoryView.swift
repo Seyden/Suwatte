@@ -22,8 +22,8 @@ extension RealmActor {
             .where { $0.currentChapter != nil }
             .where { $0.dateRead != nil }
             .where { $0.dateRead >= threeMonths }
-            .where { $0.currentChapter.content != nil ||
-                $0.currentChapter.archive != nil
+            .where { $0.currentChapter.content != nil 
+//                $0.currentChapter.archive != nil
             }
             .distinct(by: ["id"])
             .sorted(by: \.dateRead, ascending: false)

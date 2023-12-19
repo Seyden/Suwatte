@@ -43,12 +43,13 @@ extension RealmActor {
 
         switch chapter.sourceId {
         case STTHelpers.LOCAL_CONTENT_ID:
-            let content = realm
-                .objects(ArchivedContent.self)
-                .where { $0.id == chapter.contentId && !$0.isDeleted }
-                .first
-            reference = chapter.toStored().generateReference()
-            reference?.archive = content
+            break
+//            let content = realm
+//                .objects(ArchivedContent.self)
+//                .where { $0.id == chapter.contentId && !$0.isDeleted }
+//                .first
+//            reference = chapter.toStored().generateReference()
+//            reference?.archive = content
         case STTHelpers.OPDS_CONTENT_ID:
             break
             //FIXME: hih
@@ -64,7 +65,7 @@ extension RealmActor {
         }
 
         // Ensure Chapter Reference has been generated, Save Reference
-        let hasValidReference = reference?.content != nil || reference?.archive != nil
+        let hasValidReference = reference?.content != nil
         guard let reference, hasValidReference else { return }
 
         await operation {
@@ -113,12 +114,13 @@ extension RealmActor {
 
         switch chapter.sourceId {
         case STTHelpers.LOCAL_CONTENT_ID:
-            let content = realm
-                .objects(ArchivedContent.self)
-                .where { $0.id == chapter.contentId && !$0.isDeleted }
-                .first
-            reference = chapter.toStored().generateReference()
-            reference?.archive = content
+            break
+//            let content = realm
+//                .objects(ArchivedContent.self)
+//                .where { $0.id == chapter.contentId && !$0.isDeleted }
+//                .first
+//            reference = chapter.toStored().generateReference()
+//            reference?.archive = content
         case STTHelpers.OPDS_CONTENT_ID:
             // FIXME: OPDS
             break

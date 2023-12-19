@@ -10,7 +10,7 @@ import SwiftUI
 extension HistoryView {
     struct ArchiveCell: View {
         var marker: ProgressMarker
-        var archive: ArchivedContent
+        var archive: CDArchive
         var chapter: ChapterReference
         var file: File
         var size = 140.0

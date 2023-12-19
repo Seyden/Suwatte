@@ -21,10 +21,10 @@ extension ProfileView.Sheets {
         @State private var entry: LibraryEntry?
 
         @EnvironmentObject private var stateManager: StateManager
-
-        private var collections: [LibraryCollection] {
-            stateManager.collections
-        }
+        
+        @FetchRequest(fetchRequest: CDCollection.fetchAll(), animation: .default)
+        private var records: FetchedResults<CDCollection>
+      
 
         func containsCollection(withID id: String) -> Bool {
             selectedCollections.contains(id)
@@ -34,7 +34,7 @@ extension ProfileView.Sheets {
         var CollectionLabelName: String {
             guard let entry else { return "None" }
             let collectionNames = entry.collections.compactMap { id in
-                collections.first(where: { $0.id == id })?.name
+                records.first(where: { $0.collectionID == id })?.name
             }.joined(separator: ", ")
             return collectionNames
         }
@@ -61,26 +61,22 @@ extension ProfileView.Sheets {
                         ProgressView()
                     }
                 }
-                .animation(.default, value: collections)
                 .animation(.default, value: entry)
                 .animation(.default, value: selectedCollections)
                 .navigationTitle("Manage")
                 .navigationBarTitleDisplayMode(.inline)
                 .closeButton()
                 .task {
-                    let actor = await RealmActor.shared()
-                    let value = await actor.fetchAndPruneLibraryEntry(for: id)
-                    Task { @MainActor in
-                        entry = value
-                        selectedCollections = Set(value?.collections.toArray() ?? [])
-                        flag = value?.flag ?? .unknown
-                    }
+                    // FIXME: what ever this does
+//                    let actor = await RealmActor.shared()
+//                    let value = await actor.getLibraryEntries(for: id)
+//                    Task { @MainActor in
+//                        entry = value
+//                        selectedCollections = Set(value?.collections.toArray() ?? [])
+//                        flag = value?.flag ?? .unknown
+//                    }
                 }
             }
-        }
-
-        func isValidCollection(_ id: String) -> Bool {
-            collections.contains(where: { $0.id == id })
         }
 
         var CollectionView: some View {
@@ -101,7 +97,7 @@ extension ProfileView.Sheets {
 
         @ViewBuilder
         var ANC: some View {
-            if collections.count < 3 {
+            if records.count < 3 {
                 AddCollectionView()
             }
         }
@@ -109,7 +105,7 @@ extension ProfileView.Sheets {
         @ViewBuilder
         var MainSection: some View {
             Section {
-                if collections.isEmpty {
+                if records.isEmpty {
                     NoCollectionsView
                 } else {
                     CollectionsView
@@ -169,18 +165,18 @@ extension ProfileView.Sheets {
         // MARK: Child Views
 
         var CollectionsView: some View {
-            ForEach(collections) { collection in
+            ForEach(records) { collection in
                 CollectionCell(for: collection)
             }
         }
 
-        func CollectionCell(for collection: LibraryCollection) -> some View {
-            Button { toggleCollection(id: collection.id) } label: {
+        func CollectionCell(for collection: CDCollection) -> some View {
+            Button { toggleCollection(id: collection.collectionID) } label: {
                 HStack {
                     Text(collection.name)
                     Spacer()
 
-                    if containsCollection(withID: collection.id) {
+                    if containsCollection(withID: collection.collectionID) {
                         Image(systemName: "checkmark")
                             .transition(.scale)
                     }

@@ -10,7 +10,7 @@ import SwiftUI
 
 extension LibraryView {
     struct LibraryGrid: View {
-        let collection: LibraryCollection?
+        let collection: CDCollection?
         let readingFlag: LibraryFlag?
         var useLibrary = false
         @State var presentCollectionSheet = false

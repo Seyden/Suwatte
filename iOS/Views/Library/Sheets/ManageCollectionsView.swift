@@ -5,17 +5,15 @@
 //  Created by Mantton on 2022-03-08.
 //
 
-import RealmSwift
 import SwiftUI
 
 extension LibraryView {
     struct ManageCollectionsView: View {
         @Environment(\.presentationMode) private var presentationMode
         @EnvironmentObject private var model: StateManager
-
-        var collections: [LibraryCollection] {
-            model.collections
-        }
+        @FetchRequest(fetchRequest: CDCollection.fetchAll(), animation: .default)
+        private var records: FetchedResults<CDCollection>
+        
 
         var body: some View {
             SmartNavigationView {
@@ -29,7 +27,6 @@ extension LibraryView {
                     EditButton()
                 })
                 .closeButton()
-                .animation(.default, value: collections)
             }
         }
     }
@@ -45,8 +42,9 @@ extension MCV {
 extension MCV {
     var EditorSection: some View {
         Section {
-            ForEach(collections) { collection in
+            ForEach(records) { collection in
                 NavigationLink {
+                    EmptyView()
                     CollectionManagementView(collection: collection, collectionName: collection.name)
                 } label: {
                     Text(collection.name)
@@ -60,22 +58,16 @@ extension MCV {
     }
 
     func move(from source: IndexSet, to destination: Int) {
-        var arr = collections.map(\.id) as [String]
+        var arr = records.map(\.collectionID) as [String]
         arr.move(fromOffsets: source, toOffset: destination)
 
-        Task {
-            let actor = await RealmActor.shared()
-            await actor.reorderCollections(arr)
-        }
+        CDCollection.reorder(arr)
     }
 
     func delete(from idxs: IndexSet) {
-        let ids = idxs.compactMap { collections.getOrNil($0)?.id }
+        let ids = idxs.compactMap { records.getOrNil($0)?.collectionID }
         ids.forEach { id in
-            Task {
-                let actor = await RealmActor.shared()
-                await actor.deleteCollection(id: id)
-            }
+            CDCollection.remove(id)
         }
     }
 }
@@ -108,10 +100,7 @@ extension MCV {
             }
             let val = name
             name = ""
-            Task {
-                let actor = await RealmActor.shared()
-                await actor.addCollection(withName: val)
-            }
+            CDCollection.add(name: val)
         }
     }
 }
@@ -120,10 +109,10 @@ extension MCV {
 
 extension MCV {
     struct CollectionEditView: View {
-        @State var name: String
-        var collection: LibraryCollection
-        @State var showDone = false
-        @Binding var editting: Bool
+        @State private var name: String
+        let collection: CDCollection
+        @State  private var showDone = false
+        @Binding private var editting: Bool
         var body: some View {
             HStack {
                 TextField("Enter Name", text: $name, onEditingChanged: { change in
@@ -143,10 +132,7 @@ extension MCV {
                 if showDone {
                     Button("Done") {
                         if !name.isEmpty {
-                            Task {
-                                let actor = await RealmActor.shared()
-                                await actor.renameCollection(collection.id, name)
-                            }
+                            CDCollection.rename(collection, name: name)
                         }
                         resign()
                     }
@@ -155,7 +141,7 @@ extension MCV {
         }
 
         @MainActor
-        func resign() {
+        private func resign() {
             withAnimation {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 showDone = false

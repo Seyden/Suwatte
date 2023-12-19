@@ -13,6 +13,15 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="CDCollection" representedClassName="CDCollection" syncable="YES" codeGenerationType="class">
+        <attribute name="filter_" optional="YES" attributeType="Binary" customClassName="CollectionFilter"/>
+        <attribute name="id_" optional="YES" attributeType="String"/>
+        <attribute name="name_" optional="YES" attributeType="String"/>
+        <attribute name="order_" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <fetchIndex name="id__index">
+            <fetchIndexElement property="id_" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
     <entity name="CDOPublication" representedClassName="CDOPublication" syncable="YES" codeGenerationType="class">
         <attribute name="id_" optional="YES" attributeType="String"/>
         <attribute name="lastRead" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>

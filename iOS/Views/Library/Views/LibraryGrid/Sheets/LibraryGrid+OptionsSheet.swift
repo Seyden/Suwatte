@@ -22,7 +22,7 @@ extension LibraryView.LibraryGrid {
         @AppStorage(STTKeys.LibraryShowBadges) var showBadges = true
         @AppStorage(STTKeys.LibraryBadgeType) var badgeType: LibraryBadge = .update
         @AppStorage(STTKeys.ShowOnlyDownloadedTitles) var showDownloadsOnly = false
-        var collection: LibraryCollection?
+        let collection: CDCollection?
         var body: some View {
             SmartNavigationView {
                 List {
@@ -40,11 +40,10 @@ extension LibraryView.LibraryGrid {
                     }
 
                     Section {
-                        if let collection = collection?.thaw() {
                             NavigationLink("Collection Settings") {
-                                CollectionManagementView(collection: collection, collectionName: collection.name)
+                                // FIXME: this
+//                                CollectionManagementView(collection: collection, collectionName: collection.name)
                             }
-                        }
                     }
                 }
                 .navigationTitle("Settings")

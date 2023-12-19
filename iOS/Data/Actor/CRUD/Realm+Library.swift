@@ -271,34 +271,6 @@ extension RealmActor {
         }
     }
 
-    func fetchAndPruneLibraryEntry(for id: String) async -> LibraryEntry? {
-        guard let target = getLibraryEntry(for: id) else {
-            return nil
-        }
-
-        let collections = realm
-            .objects(LibraryCollection.self)
-            .where { !$0.isDeleted }
-            .map(\.id)
-
-        let currentCollections = target.collections.toArray()
-        let fixed = currentCollections.filter { collections.contains($0) }
-        await operation {
-            target.collections.removeAll()
-            target.collections.append(objectsIn: fixed)
-        }
-
-        return target
-            .freeze()
-    }
-
-    func getLibraryCollections() -> [LibraryCollection] {
-        realm
-            .objects(LibraryCollection.self)
-            .where { !$0.isDeleted }
-            .freeze()
-            .toArray()
-    }
 }
 
 extension RealmActor {

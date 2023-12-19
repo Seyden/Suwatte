@@ -8,6 +8,17 @@
 import Foundation
 import RealmSwift
 
+struct CollectionFilter: Codable {
+    var adultContent: ContentSelectionType = .both
+    var readingFlags: [LibraryFlag] = []
+    var textContains: [String] = []
+    var statuses: [ContentStatus] = []
+    var sources : [String] = []
+    var tagContains: [String] = []
+    var contentType : [ExternalContentType] = []
+}
+
+
 enum ContentSelectionType: Int, PersistableEnum, CaseIterable, Identifiable, Codable {
     case none, only, both
 

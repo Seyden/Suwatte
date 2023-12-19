@@ -11,8 +11,8 @@ import SwiftUI
 
 extension LibraryView.LibraryGrid {
     struct Grid: View {
-        var entries: [LibraryEntry]
-        var collection: LibraryCollection?
+        let entries: [LibraryEntry]
+        let collection: CDCollection?
         @AppStorage(STTKeys.TileStyle) var style = TileStyle.COMPACT
         @EnvironmentObject var model: LibraryView.LibraryGrid.ViewModel
         @State var manageSelection: String?
@@ -124,7 +124,7 @@ extension LibraryView.LibraryGrid {
                             { _ in
                                 //
                                 let contentId = content.id
-                                let collectionID = collection.id
+                                let collectionID = collection.collectionID
                                 Task {
                                     let actor = await Suwatte.RealmActor.shared()
                                     await actor.toggleCollection(for: contentId, withId: collectionID)

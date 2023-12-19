@@ -17,11 +17,6 @@ extension RealmActor {
             .where { $0.content != nil && !$0.isDeleted }
             .freeze()
 
-        let collections = realm
-            .objects(LibraryCollection.self)
-            .where { !$0.isDeleted }
-            .freeze()
-
         let progressMarkers = realm
             .objects(ProgressMarker.self)
             .where { $0.currentChapter != nil && $0.currentChapter.content != nil && !$0.isDeleted }
@@ -31,10 +26,6 @@ extension RealmActor {
 
         backup.progressMarkers = progressMarkers.toArray()
         backup.library = libraryEntries.map(CodableLibraryEntry.from(entry:))
-        backup.collections = collections.toArray()
-        // FIXME: Backups
-//        backup.lists = lists.toArray()
-//        backup.runners = runners.toArray()
 
         return backup
     }
@@ -61,15 +52,6 @@ extension RealmActor {
                 realm.add(contents, update: .all)
                 realm.add(library, update: .all)
             }
-
-            if let collections = backup.collections {
-                realm.add(collections, update: .all)
-            }
-
-            // FIXME: backusp
-//            if let runnerLists = backup.lists {
-//                realm.add(runnerLists, update: .all)
-//            }
 
             if let markers = backup.progressMarkers {
                 realm.add(markers, update: .all)
@@ -131,7 +113,6 @@ extension RealmActor {
 
         try await realm.asyncWrite {
             realm.objects(LibraryEntry.self).setValue(true, forKey: "isDeleted")
-            realm.objects(LibraryCollection.self).setValue(true, forKey: "isDeleted")
             realm.objects(UpdatedBookmark.self).setValue(true, forKey: "isDeleted")
             realm.objects(ReadLater.self).setValue(true, forKey: "isDeleted")
             realm.objects(ProgressMarker.self).setValue(true, forKey: "isDeleted")
@@ -140,7 +121,6 @@ extension RealmActor {
             realm.objects(InteractorStoreObject.self).setValue(true, forKey: "isDeleted")
             realm.objects(TrackerLink.self).setValue(true, forKey: "isDeleted")
             realm.objects(ContentLink.self).setValue(true, forKey: "isDeleted")
-            realm.objects(LibraryCollectionFilter.self).setValue(true, forKey: "isDeleted")
             realm.objects(UpdatedSearchHistory.self).setValue(true, forKey: "isDeleted")
             realm.objects(ChapterBookmark.self).setValue(true, forKey: "isDeleted")
             realm.delete(realm.objects(StoredChapterData.self))

@@ -9,7 +9,7 @@ import RealmSwift
 import SwiftUI
 
 struct CollectionManagementView: View {
-    @StateRealmObject var collection: LibraryCollection
+    let collection: CDCollection
     @State var collectionName: String
     @State var enableFilters: Bool = false
 
@@ -25,14 +25,14 @@ struct CollectionManagementView: View {
             Toggle("Enable Smart Filters", isOn: $enableFilters)
 
             if let filter = collection.filter, enableFilters {
-                FilterSections(collectionId: collection.id,
-                               currentFilterID: collection.filter?.id,
-                               sourceSelections: filter.sources.toArray(),
-                               flagSelections: filter.readingFlags.toArray(),
-                               contentSelections: filter.contentType.toArray(),
-                               titleContains: filter.textContains.toArray(),
-                               tagContains: filter.tagContains.toArray(),
-                               contentStatuses: filter.statuses.toArray())
+                FilterSections(collection: collection,
+                               adultContent: filter.adultContent,
+                               sourceSelections: filter.sources,
+                               flagSelections: filter.readingFlags,
+                               contentSelections: filter.contentType,
+                               titleContains: filter.textContains,
+                               tagContains: filter.tagContains,
+                               contentStatuses: filter.statuses)
                     .transition(.slide)
                     .animation(.default)
             }
@@ -53,11 +53,8 @@ struct CollectionManagementView: View {
             collectionName = collection.name
             return
         }
-        let id = collection.id
-        Task {
-            let actor = await RealmActor.shared()
-            await actor.renameCollection(id, str)
-        }
+        let id = collection.collectionID
+        CDCollection.rename(id, name: str)
     }
 
     func load() {
@@ -68,8 +65,7 @@ struct CollectionManagementView: View {
 
 extension CollectionManagementView {
     struct FilterSections: View {
-        let collectionId: String
-        let currentFilterID: String?
+        let collection: CDCollection
         @State var adultContent = ContentSelectionType.both
         @State var sourceSelections: [String]
         @State var flagSelections: [LibraryFlag]
@@ -347,32 +343,26 @@ extension CollectionManagementView.FilterSections {
     }
 
     func saveAll() {
-        let filter = LibraryCollectionFilter()
+        var filter = CollectionFilter()
 
-        if let currentFilterID {
-            filter.id = currentFilterID
-        }
         filter.adultContent = adultContent
-        filter.sources.append(objectsIn: sourceSelections)
-        filter.readingFlags.append(objectsIn: flagSelections)
-        filter.contentType.append(objectsIn: contentSelections)
-        filter.tagContains.append(objectsIn: tagContains)
-        filter.textContains.append(objectsIn: titleContains)
-        filter.statuses.append(objectsIn: contentStatuses)
-        Task {
-            let actor = await RealmActor.shared()
-            await actor.saveCollectionFilters(for: collectionId, filter: filter)
-        }
+        filter.sources.append(contentsOf: sourceSelections)
+        filter.readingFlags.append(contentsOf: flagSelections)
+        filter.contentType.append(contentsOf: contentSelections)
+        filter.tagContains.append(contentsOf: tagContains)
+        filter.textContains.append(contentsOf: titleContains)
+        filter.statuses.append(contentsOf: contentStatuses)
+        
+        CDCollection.addFilter(collection, filter: filter)
     }
 }
 
 extension CollectionManagementView {
     func handleToggleFilterEnabled(_ value: Bool) {
-        let id = collection.id
-
-        Task {
-            let actor = await RealmActor.shared()
-            await actor.toggleCollectionFilters(id: id, value: value)
+        if collection.filter_ == nil {
+            CDCollection.addFilter(collection, filter: .init())
+        } else {
+            CDCollection.removeFilter(collection)
         }
     }
 }

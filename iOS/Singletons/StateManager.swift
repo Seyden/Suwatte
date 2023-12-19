@@ -25,14 +25,12 @@ final class StateManager: ObservableObject {
     let readerClosedPublisher = PassthroughSubject<Void, Never>()
     @Published var readerState: ReaderState?
     @Published var titleHasCustomThumbs: Set<String> = []
-    @Published var collections: [LibraryCollection] = []
 
     /// This is incremented when a grid related setting is changes
     @Published var gridLayoutDidChange = 0
 
     // Tokens
     private var thumbnailToken: NotificationToken?
-    private var collectionToken: NotificationToken?
 
     func initialize() {
         registerNetworkObserver()
@@ -180,7 +178,7 @@ extension StateManager {
                 }
             }
 
-            if thumbnailToken == nil, collectionToken == nil {
+            if thumbnailToken == nil {
                 Task { @MainActor in
                     await observe()
                 }
@@ -204,22 +202,11 @@ extension StateManager {
                 self?.titleHasCustomThumbs = value
             }
         }
-
-        collectionToken = await actor.observeLibraryCollection { value in
-            Task { @MainActor in
-                withAnimation { [weak self] in
-                    self?.collections = value
-                }
-            }
-        }
     }
 
     func stopObservingRealm() {
         thumbnailToken?.invalidate()
         thumbnailToken = nil
-
-        collectionToken?.invalidate()
-        collectionToken = nil
     }
 }
 

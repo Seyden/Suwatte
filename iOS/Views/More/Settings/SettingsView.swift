@@ -59,13 +59,15 @@ extension SettingsView {
 
 extension SettingsView {
     struct UpdatesSection: View {
-        @AppStorage(STTKeys.UpdateInterval) var updateInterval: STTUpdateInterval = .oneHour
-        @AppStorage(STTKeys.CheckLinkedOnUpdateCheck) var checkLinkedOnUpdate = false
-        @AppStorage(STTKeys.UpdateContentData) var updateContent = false
-        @Preference(\.skipConditions) var skipConditions
-        @Preference(\.updatesUseCollections) var onlyCheckCollections
-        @Preference(\.approvedUpdateCollections) var approvedCollections
-        @EnvironmentObject private var model: StateManager
+        @AppStorage(STTKeys.UpdateInterval) private var updateInterval: STTUpdateInterval = .oneHour
+        @AppStorage(STTKeys.CheckLinkedOnUpdateCheck) private var checkLinkedOnUpdate = false
+        @AppStorage(STTKeys.UpdateContentData) private var updateContent = false
+        @Preference(\.skipConditions) private var skipConditions
+        @Preference(\.updatesUseCollections) private var onlyCheckCollections
+        @Preference(\.approvedUpdateCollections) private var approvedCollections
+        @FetchRequest(fetchRequest: CDCollection.fetchAll(), animation: .default)
+        private var collections: FetchedResults<CDCollection>
+        
         var body: some View {
             Section {
                 // Update Interval
@@ -84,11 +86,11 @@ extension SettingsView {
                 }
 
                 Toggle("Update Specific Collections", isOn: $onlyCheckCollections)
-                    .disabled(!onlyCheckCollections && model.collections.isEmpty)
+                    .disabled(!onlyCheckCollections && collections.isEmpty)
 
                 if onlyCheckCollections {
                     NavigationLink("Selected Collections") {
-                        MultiSelectionView(options: model.collections, selection: SELECTED_COLLECTIONS) { collection in
+                        MultiSelectionView(options: collections, selection: SELECTED_COLLECTIONS) { collection in
                             Text(collection.name)
                         }
                         .buttonStyle(.plain)
@@ -119,11 +121,11 @@ extension SettingsView {
             }
         }
 
-        var SELECTED_COLLECTIONS: Binding<Set<LibraryCollection>> {
+        var SELECTED_COLLECTIONS: Binding<Set<CDCollection>> {
             .init {
-                Set(model.collections.filter { approvedCollections.contains($0.id) })
+                Set(collections.filter { approvedCollections.contains($0.collectionID) })
             } set: { selections in
-                approvedCollections = Set(selections.map(\.id))
+                approvedCollections = Set(selections.map(\.collectionID))
             }
         }
     }
@@ -217,10 +219,8 @@ extension SettingsView {
         @AppStorage(STTKeys.DefaultCollection) var defaultCollection: String = ""
         @AppStorage(STTKeys.DefaultReadingFlag) var defaultFlag = LibraryFlag.unknown
         @EnvironmentObject private var stateManager: StateManager
-
-        private var collections: [LibraryCollection] {
-            stateManager.collections
-        }
+        @FetchRequest(fetchRequest: CDCollection.fetchAll(), animation: .default)
+        private var collections: FetchedResults<CDCollection>
 
         var body: some View {
             Section {

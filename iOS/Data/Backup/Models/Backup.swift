@@ -14,7 +14,7 @@ struct Backup: Codable {
 //    var runners: [StoredRunnerObject]?
 
     var library: [CodableLibraryEntry]?
-    var collections: [LibraryCollection]?
+    var collections: [String]?
     var markers: [OutdatedMarker]?
     var progressMarkers: [ProgressMarker]?
 

@@ -12,7 +12,7 @@ import SwiftUI
 
 extension LibraryView.LibraryGrid {
     final class ViewModel: ObservableObject {
-        var collection: LibraryCollection?
+        var collection: CDCollection?
         var readingFlag: LibraryFlag?
         @Published var searchQuery = ""
         // Sheets
@@ -33,7 +33,7 @@ extension LibraryView.LibraryGrid {
         @Published var library: [LibraryEntry]?
         private var token: NotificationToken?
 
-        func setFilterGroups(collection: LibraryCollection? = nil, readingFlag: LibraryFlag? = nil) {
+        func setFilterGroups(collection: CDCollection? = nil, readingFlag: LibraryFlag? = nil) {
             self.collection = collection
             self.readingFlag = readingFlag
         }
@@ -51,7 +51,7 @@ extension LibraryView.LibraryGrid {
 
         func observe(downloadsOnly: Bool, key: KeyPath, order: SortOrder) {
             disconnect()
-            let state: LibraryGridState = .init(collection: collection?.freeze(),
+            let state: LibraryGridState = .init(collection: nil,
                                                 readingFlag: readingFlag,
                                                 query: query,
                                                 sort: key,

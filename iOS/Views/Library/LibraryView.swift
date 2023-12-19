@@ -250,12 +250,9 @@ extension LibraryView {
 
 extension LibraryView {
     struct CollectionsSectionView: View {
-        @EnvironmentObject private var stateManager: StateManager
-
-        private var collections: [LibraryCollection] {
-            stateManager.collections
-        }
-
+        @FetchRequest(fetchRequest: CDCollection.fetchAll(), animation: .default)
+        private var collections: FetchedResults<CDCollection>
+        
         var body: some View {
             Section {
                 NavigationLink {
@@ -266,7 +263,8 @@ extension LibraryView {
                 
                 ForEach(collections) { collection in
                     NavigationLink {
-                        LibraryGrid(collection: collection, readingFlag: nil)
+                        // FIXME: Update
+//                        LibraryGrid(collection: collection, readingFlag: nil)
                     } label: {
                         Label(collection.name, systemImage: "archivebox")
                     }
@@ -275,7 +273,6 @@ extension LibraryView {
                 Text("Collections")
             }
             .headerProminence(.increased)
-            .animation(.default, value: stateManager.collections)
         }
     }
 }

@@ -57,10 +57,7 @@ extension RealmActor {
             .where { !$0.isDeleted }
             .count
 
-        let collections = realm
-            .objects(LibraryCollection.self)
-            .where { !$0.isDeleted }
-            .count
+        let collections = 0
 
         let downloads = realm
             .objects(SourceDownloadIndex.self)

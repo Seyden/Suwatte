@@ -17,10 +17,9 @@ extension LibraryView.LibraryGrid {
         @ObservedObject var toastManager = ToastManager()
         @EnvironmentObject private var stateManager: StateManager
 
-        private var collections: [LibraryCollection] {
-            stateManager.collections
-        }
-
+        @FetchRequest(fetchRequest: CDCollection.fetchAll(), animation: .default)
+        private var collections: FetchedResults<CDCollection>
+        
         var body: some View {
             SmartNavigationView {
                 List {
@@ -31,7 +30,7 @@ extension LibraryView.LibraryGrid {
                                     Text(collection.name)
                                     Spacer()
                                     Image(systemName: "checkmark")
-                                        .opacity(selectedCollections.contains(collection.id) ? 1.0 : 0.0)
+                                        .opacity(selectedCollections.contains(collection.collectionID) ? 1.0 : 0.0)
                                 }
                             }
                             .buttonStyle(.plain)
@@ -75,12 +74,12 @@ extension LibraryView.LibraryGrid {
             }
         }
 
-        func onSelection(of collection: LibraryCollection) {
+        func onSelection(of collection: CDCollection) {
             withAnimation {
-                if selectedCollections.contains(collection.id) {
-                    selectedCollections.remove(at: selectedCollections.firstIndex(of: collection.id)!)
+                if selectedCollections.contains(collection.collectionID) {
+                    selectedCollections.remove(at: selectedCollections.firstIndex(of: collection.collectionID)!)
                 } else {
-                    selectedCollections.append(collection.id)
+                    selectedCollections.append(collection.collectionID)
                 }
             }
         }

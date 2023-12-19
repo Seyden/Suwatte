@@ -1,5 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="22522" systemVersion="23B81" minimumToolsVersion="Automatic" sourceLanguage="Swift" usedWithSwiftData="YES" userDefinedModelVersionIdentifier="">
+    <entity name="CDOPublication" representedClassName="CDOPublication" syncable="YES" codeGenerationType="class">
+        <attribute name="id_" optional="YES" attributeType="String"/>
+        <attribute name="lastRead" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="link_" optional="YES" attributeType="String"/>
+        <attribute name="pageCount" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="thumbnail_" optional="YES" attributeType="String"/>
+        <attribute name="title_" optional="YES" attributeType="String"/>
+        <relationship name="server" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="CDOServer"/>
+        <fetchIndex name="id__index">
+            <fetchIndexElement property="id_" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
+    <entity name="CDOServer" representedClassName="CDOServer" syncable="YES" codeGenerationType="class">
+        <attribute name="alias_" optional="YES" attributeType="String"/>
+        <attribute name="host_" optional="YES" attributeType="String"/>
+        <attribute name="id_" optional="YES" attributeType="String"/>
+        <attribute name="password_" optional="YES" attributeType="String"/>
+        <attribute name="username_" optional="YES" attributeType="String"/>
+        <fetchIndex name="id__index">
+            <fetchIndexElement property="id_" type="Binary" order="ascending"/>
+        </fetchIndex>
+    </entity>
     <entity name="CDRunner" representedClassName="CDRunner" syncable="YES" codeGenerationType="class">
         <attribute name="environment_" optional="YES" attributeType="String"/>
         <attribute name="executable" optional="YES" attributeType="Binary" allowsExternalBinaryDataStorage="YES"/>

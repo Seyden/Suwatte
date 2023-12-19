@@ -11,20 +11,20 @@ import SwiftUI
 extension HistoryView {
     struct OPDSCell: View {
         var marker: ProgressMarker
-        var content: StreamableOPDSContent
+        var content: CDOPublication
         var chapter: ChapterReference
         var size = 140.0
 
         var body: some View {
             HStack {
-                STTImageView(url: URL(string: content.contentThumbnail), identifier: .init(contentId: content.id, sourceId: STTHelpers.OPDS_CONTENT_ID))
+                STTImageView(url: URL(string: content.thumbnail), identifier: .init(contentId: content.contentID, sourceId: STTHelpers.OPDS_CONTENT_ID))
                     .frame(minWidth: 0, idealWidth: size, maxWidth: size, minHeight: 0, idealHeight: size * 1.5, maxHeight: size * 1.5, alignment: .center)
                     .scaledToFit()
                     .cornerRadius(5)
                     .shadow(radius: 3)
 
                 VStack(alignment: .leading, spacing: 3.5) {
-                    Text(content.contentTitle)
+                    Text(content.title)
                         .font(.subheadline)
                         .fontWeight(.semibold)
                         .lineLimit(3)

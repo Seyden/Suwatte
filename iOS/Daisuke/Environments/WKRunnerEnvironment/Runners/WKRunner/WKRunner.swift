@@ -25,7 +25,11 @@ public class WKRunner: DSKRunner {
         intents = .placeholder
 
         if let customID {
-            // FIXME: Custom Name
+            let runner = try CDRunner.get(for: customID)
+            guard let runner else {
+                throw DSK.Errors.NamedError(name: "", message: "Runner Object not found")
+            }
+            customName = runner.name
             let idScript = "RunnerObject.info.id = '\(customID)';IDENTIFIER = '\(customID)'"
             try await eval(idScript)
         }

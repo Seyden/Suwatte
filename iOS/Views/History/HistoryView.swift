@@ -139,9 +139,13 @@ extension HistoryView {
             } else {
                 model.csSelection = (content.sourceId, content.toHighlight())
             }
-        } else if let content = marker.currentChapter?.opds {
-            content.read()
-        } else if let archive = marker.currentChapter?.archive {
+        }
+        
+        // FIXME: Fix this
+//        else if let content = marker.currentChapter?.opds {
+//            content.read()
+//        }
+        else if let archive = marker.currentChapter?.archive {
             do {
                 let file = try archive.getURL()?.convertToSTTFile()
                 guard let file else {
@@ -166,9 +170,12 @@ extension HistoryView {
                 if let reference = marker.currentChapter {
                     if let content = reference.content {
                         ContentSourceCell(marker: marker, content: content, chapter: reference)
-                    } else if let content = reference.opds {
-                        OPDSCell(marker: marker, content: content, chapter: reference)
-                    } else if let content = reference.archive {
+                    } 
+                    // FIXME: OPDS
+//                    else if let content = reference.opds {
+//                        OPDSCell(marker: marker, content: content, chapter: reference)
+//                    } 
+                    else if let content = reference.archive {
                         if let file = try? content.getURL()?.convertToSTTFile() {
                             ArchiveCell(marker: marker, archive: content, chapter: reference, file: file)
                         } else {

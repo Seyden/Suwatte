@@ -73,7 +73,6 @@
 		DF2783392A799D480098BBA9 /* Realm+Content.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2783382A799D480098BBA9 /* Realm+Content.swift */; };
 		DF27833B2A799D950098BBA9 /* Realm+Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF27833A2A799D950098BBA9 /* Realm+Chapter.swift */; };
 		DF27833D2A799E400098BBA9 /* Realm+ChapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF27833C2A799E400098BBA9 /* Realm+ChapterData.swift */; };
-		DF27833F2A799E8D0098BBA9 /* Realm+OPDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF27833E2A799E8D0098BBA9 /* Realm+OPDS.swift */; };
 		DF2783412A799ECE0098BBA9 /* Realm+Archive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2783402A799ECE0098BBA9 /* Realm+Archive.swift */; };
 		DF2783432A799F290098BBA9 /* Realm+Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2783422A799F290098BBA9 /* Realm+Search.swift */; };
 		DF2783452A799F690098BBA9 /* Realm+ValueStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF2783442A799F690098BBA9 /* Realm+ValueStore.swift */; };
@@ -155,13 +154,14 @@
 		DF59C97D285004860027F19D /* ZIPFoundation in Frameworks */ = {isa = PBXBuildFile; productRef = DF59C97C285004860027F19D /* ZIPFoundation */; };
 		DF59C98028500E200027F19D /* LocalFileModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF59C97F28500E200027F19D /* LocalFileModifier.swift */; };
 		DF59C988285054670027F19D /* Unrar in Frameworks */ = {isa = PBXBuildFile; productRef = DF59C987285054670027F19D /* Unrar */; };
-		DF5E3D532B30032B00F1722C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D512B30032B00F1722C /* Model.xcdatamodeld */; };
 		DF5E3D572B300C9200F1722C /* CDRunnerList.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D562B300C9200F1722C /* CDRunnerList.swift */; };
 		DF5E3D5D2B30109B00F1722C /* CDManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D5C2B30109B00F1722C /* CDManager.swift */; };
 		DF5E3D6B2B30257B00F1722C /* RunnerListInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D6A2B30257B00F1722C /* RunnerListInfoView.swift */; };
 		DF5E3D6E2B3026C100F1722C /* RunnerInfoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D6D2B3026C100F1722C /* RunnerInfoView.swift */; };
 		DF5E3D712B3030D500F1722C /* CDRunner.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D702B3030D500F1722C /* CDRunner.swift */; };
 		DF5E3D782B30E8FE00F1722C /* PageLinkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D772B30E8FE00F1722C /* PageLinkProvider.swift */; };
+		DF5E3D7C2B3101E600F1722C /* CDOPDSServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D7B2B3101E600F1722C /* CDOPDSServer.swift */; };
+		DF5E3D7D2B3102F400F1722C /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DF5E3D512B30032B00F1722C /* Model.xcdatamodeld */; };
 		DF60FF212B2D5C0900E1683A /* LibraryGateway.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF202B2D5C0900E1683A /* LibraryGateway.swift */; };
 		DF60FF242B2D5E0200E1683A /* CompactLibraryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF232B2D5E0200E1683A /* CompactLibraryView.swift */; };
 		DF60FF262B2D664B00E1683A /* CollectionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DF60FF252B2D664B00E1683A /* CollectionPickerView.swift */; };
@@ -341,7 +341,6 @@
 		DFB47EF72880C1FB0040A1BD /* STT+OPDS.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB47EF62880C1FB0040A1BD /* STT+OPDS.swift */; };
 		DFB47EFA2880C3DA0040A1BD /* OPDS+HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB47EF92880C3D90040A1BD /* OPDS+HomeView.swift */; };
 		DFB47EFD2880E9C90040A1BD /* OPDS+AddServer.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB47EFC2880E9C90040A1BD /* OPDS+AddServer.swift */; };
-		DFB47F002881013A0040A1BD /* OPDSClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB47EFF2881013A0040A1BD /* OPDSClient.swift */; };
 		DFB47F02288107D00040A1BD /* OPDS+FeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFB47F01288107CF0040A1BD /* OPDS+FeedView.swift */; };
 		DFB7FB03297B965D00599097 /* OrderedCollections in Frameworks */ = {isa = PBXBuildFile; productRef = DFB7FB02297B965D00599097 /* OrderedCollections */; };
 		DFBD202C28554ECB0042B4A6 /* CollectionFilter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBD202B28554ECB0042B4A6 /* CollectionFilter.swift */; };
@@ -349,7 +348,6 @@
 		DFBE48382A25BB53000ABA16 /* Chapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE48372A25BB53000ABA16 /* Chapter.swift */; };
 		DFBE483A2A25BBC1000ABA16 /* ChapterReference.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE48392A25BBC1000ABA16 /* ChapterReference.swift */; };
 		DFBE483C2A25BC2B000ABA16 /* ThreadSafeChapter.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE483B2A25BC2B000ABA16 /* ThreadSafeChapter.swift */; };
-		DFBE483E2A25BC88000ABA16 /* OPDSContent.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE483D2A25BC88000ABA16 /* OPDSContent.swift */; };
 		DFBE48402A25BCA7000ABA16 /* StoreObject.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE483F2A25BCA7000ABA16 /* StoreObject.swift */; };
 		DFBE48422A25BCD1000ABA16 /* ChapterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE48412A25BCD0000ABA16 /* ChapterData.swift */; };
 		DFBE48442A25BD07000ABA16 /* SearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE48432A25BD07000ABA16 /* SearchHistory.swift */; };
@@ -364,6 +362,7 @@
 		DFBE48562A25BEB2000ABA16 /* ContentLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE48552A25BEB2000ABA16 /* ContentLink.swift */; };
 		DFBE485A2A26CE84000ABA16 /* History+ContentSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE48592A26CE84000ABA16 /* History+ContentSource.swift */; };
 		DFBE485C2A2FA20E000ABA16 /* ReadLater+ViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFBE485B2A2FA20E000ABA16 /* ReadLater+ViewModel.swift */; };
+		DFC153452B310DB800C0737A /* CDOPublication.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC153442B310DB800C0737A /* CDOPublication.swift */; };
 		DFC383992AB4195C003903FA /* Realm+RunnerUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC383982AB4195C003903FA /* Realm+RunnerUpdate.swift */; };
 		DFC39E9328A093C900450EC4 /* InstalledRunnersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC39E9228A093C900450EC4 /* InstalledRunnersView.swift */; };
 		DFC39E9528A093D700450EC4 /* RunnerListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC39E9428A093D700450EC4 /* RunnerListsView.swift */; };
@@ -553,7 +552,6 @@
 		DF2783382A799D480098BBA9 /* Realm+Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Content.swift"; sourceTree = "<group>"; };
 		DF27833A2A799D950098BBA9 /* Realm+Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Chapter.swift"; sourceTree = "<group>"; };
 		DF27833C2A799E400098BBA9 /* Realm+ChapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+ChapterData.swift"; sourceTree = "<group>"; };
-		DF27833E2A799E8D0098BBA9 /* Realm+OPDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+OPDS.swift"; sourceTree = "<group>"; };
 		DF2783402A799ECE0098BBA9 /* Realm+Archive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Archive.swift"; sourceTree = "<group>"; };
 		DF2783422A799F290098BBA9 /* Realm+Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+Search.swift"; sourceTree = "<group>"; };
 		DF2783442A799F690098BBA9 /* Realm+ValueStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+ValueStore.swift"; sourceTree = "<group>"; };
@@ -638,6 +636,7 @@
 		DF5E3D6D2B3026C100F1722C /* RunnerInfoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerInfoView.swift; sourceTree = "<group>"; };
 		DF5E3D702B3030D500F1722C /* CDRunner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDRunner.swift; sourceTree = "<group>"; };
 		DF5E3D772B30E8FE00F1722C /* PageLinkProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PageLinkProvider.swift; sourceTree = "<group>"; };
+		DF5E3D7B2B3101E600F1722C /* CDOPDSServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDOPDSServer.swift; sourceTree = "<group>"; };
 		DF60FF202B2D5C0900E1683A /* LibraryGateway.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LibraryGateway.swift; sourceTree = "<group>"; };
 		DF60FF232B2D5E0200E1683A /* CompactLibraryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CompactLibraryView.swift; sourceTree = "<group>"; };
 		DF60FF252B2D664B00E1683A /* CollectionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionPickerView.swift; sourceTree = "<group>"; };
@@ -810,14 +809,12 @@
 		DFB47EF62880C1FB0040A1BD /* STT+OPDS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "STT+OPDS.swift"; sourceTree = "<group>"; };
 		DFB47EF92880C3D90040A1BD /* OPDS+HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OPDS+HomeView.swift"; sourceTree = "<group>"; };
 		DFB47EFC2880E9C90040A1BD /* OPDS+AddServer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OPDS+AddServer.swift"; sourceTree = "<group>"; };
-		DFB47EFF2881013A0040A1BD /* OPDSClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPDSClient.swift; sourceTree = "<group>"; };
 		DFB47F01288107CF0040A1BD /* OPDS+FeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OPDS+FeedView.swift"; sourceTree = "<group>"; };
 		DFBD202B28554ECB0042B4A6 /* CollectionFilter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFilter.swift; sourceTree = "<group>"; };
 		DFBE48352A25BAD5000ABA16 /* Content.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Content.swift; sourceTree = "<group>"; };
 		DFBE48372A25BB53000ABA16 /* Chapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chapter.swift; sourceTree = "<group>"; };
 		DFBE48392A25BBC1000ABA16 /* ChapterReference.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterReference.swift; sourceTree = "<group>"; };
 		DFBE483B2A25BC2B000ABA16 /* ThreadSafeChapter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ThreadSafeChapter.swift; sourceTree = "<group>"; };
-		DFBE483D2A25BC88000ABA16 /* OPDSContent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OPDSContent.swift; sourceTree = "<group>"; };
 		DFBE483F2A25BCA7000ABA16 /* StoreObject.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoreObject.swift; sourceTree = "<group>"; };
 		DFBE48412A25BCD0000ABA16 /* ChapterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChapterData.swift; sourceTree = "<group>"; };
 		DFBE48432A25BD07000ABA16 /* SearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchHistory.swift; sourceTree = "<group>"; };
@@ -832,6 +829,7 @@
 		DFBE48552A25BEB2000ABA16 /* ContentLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentLink.swift; sourceTree = "<group>"; };
 		DFBE48592A26CE84000ABA16 /* History+ContentSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "History+ContentSource.swift"; sourceTree = "<group>"; };
 		DFBE485B2A2FA20E000ABA16 /* ReadLater+ViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ReadLater+ViewModel.swift"; sourceTree = "<group>"; };
+		DFC153442B310DB800C0737A /* CDOPublication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDOPublication.swift; sourceTree = "<group>"; };
 		DFC383982AB4195C003903FA /* Realm+RunnerUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+RunnerUpdate.swift"; sourceTree = "<group>"; };
 		DFC39E9228A093C900450EC4 /* InstalledRunnersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalledRunnersView.swift; sourceTree = "<group>"; };
 		DFC39E9428A093D700450EC4 /* RunnerListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerListsView.swift; sourceTree = "<group>"; };
@@ -1177,7 +1175,6 @@
 				DF27833A2A799D950098BBA9 /* Realm+Chapter.swift */,
 				DF27833C2A799E400098BBA9 /* Realm+ChapterData.swift */,
 				DF2783362A799C7E0098BBA9 /* Realm+ProgressMarker.swift */,
-				DF27833E2A799E8D0098BBA9 /* Realm+OPDS.swift */,
 				DF2783402A799ECE0098BBA9 /* Realm+Archive.swift */,
 				DF2783422A799F290098BBA9 /* Realm+Search.swift */,
 				DF2783442A799F690098BBA9 /* Realm+ValueStore.swift */,
@@ -1456,6 +1453,8 @@
 			children = (
 				DF5E3D562B300C9200F1722C /* CDRunnerList.swift */,
 				DF5E3D702B3030D500F1722C /* CDRunner.swift */,
+				DF5E3D7B2B3101E600F1722C /* CDOPDSServer.swift */,
+				DFC153442B310DB800C0737A /* CDOPublication.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -2224,9 +2223,7 @@
 				DFBE48352A25BAD5000ABA16 /* Content.swift */,
 				DFBE48372A25BB53000ABA16 /* Chapter.swift */,
 				DFBE48392A25BBC1000ABA16 /* ChapterReference.swift */,
-				DFB47EFF2881013A0040A1BD /* OPDSClient.swift */,
 				DFBE483B2A25BC2B000ABA16 /* ThreadSafeChapter.swift */,
-				DFBE483D2A25BC88000ABA16 /* OPDSContent.swift */,
 				DFBE483F2A25BCA7000ABA16 /* StoreObject.swift */,
 				DFBE48412A25BCD0000ABA16 /* ChapterData.swift */,
 				DFBE48432A25BD07000ABA16 /* SearchHistory.swift */,
@@ -2712,6 +2709,7 @@
 				DFE1B0FC2A9A5AE400D300DB /* ChapterList+DownloadContext.swift in Sources */,
 				DFDBF99B2A7C9700006D49AD /* WKR+Auth.swift in Sources */,
 				DF1114742A91A01300FA8A39 /* ImageNode.swift in Sources */,
+				DFC153452B310DB800C0737A /* CDOPublication.swift in Sources */,
 				DFDBF9B72A7DA0AA006D49AD /* Reader+Page.swift in Sources */,
 				DF30193B28C045E30024AA8B /* Backup+Runner.swift in Sources */,
 				DF8D0B762800EE48003E4C3E /* LG+MoveCollection.swift in Sources */,
@@ -2892,7 +2890,6 @@
 				DF020A5D2A8C5E9600BC5562 /* PagingController+Scroll.swift in Sources */,
 				DF3318572A47A63E000B092B /* CloudDownloader.swift in Sources */,
 				DF8D0B9C2800EE48003E4C3E /* ProfileView+Skeleton.swift in Sources */,
-				DF5E3D532B30032B00F1722C /* Model.xcdatamodeld in Sources */,
 				DF8D0B712800EE48003E4C3E /* ManageCollectionsView.swift in Sources */,
 				DF8D0BB52800EE48003E4C3E /* LazyView.swift in Sources */,
 				DF489C112A81C6F2006A21B9 /* IV+Protocol.swift in Sources */,
@@ -2981,6 +2978,7 @@
 				DF62B5C12A96F29600F907CD /* CPVM+Observers.swift in Sources */,
 				DF6C25CB282D97EB002BE1AA /* STT+Parsable.swift in Sources */,
 				DF3DA8F52A57320100E8E3BD /* JSCRunner.swift in Sources */,
+				DF5E3D7C2B3101E600F1722C /* CDOPDSServer.swift in Sources */,
 				DF9BFE1E2A428A73005D0B63 /* AH+Rar.swift in Sources */,
 				DFC383992AB4195C003903FA /* Realm+RunnerUpdate.swift in Sources */,
 				DF2783452A799F690098BBA9 /* Realm+ValueStore.swift in Sources */,
@@ -2992,7 +2990,6 @@
 				DF8D0BA22800EE48003E4C3E /* UpdateFeedTile.swift in Sources */,
 				DFE1B0FE2A9A65AE00D300DB /* CPVM+ChapterList.swift in Sources */,
 				DF2783392A799D480098BBA9 /* Realm+Content.swift in Sources */,
-				DF27833F2A799E8D0098BBA9 /* Realm+OPDS.swift in Sources */,
 				DF01DEEA2A587A5D0025700B /* Engine+LibraryUpdate.swift in Sources */,
 				DF8D0B772800EE48003E4C3E /* Library+CollectionView.swift in Sources */,
 				DFDBF9E52A7DC29B006D49AD /* Paged+Representable.swift in Sources */,
@@ -3019,7 +3016,6 @@
 				DF11146F2A917B5E00FA8A39 /* WebtoonController+Setup.swift in Sources */,
 				DF33AC162A700C6600D2993A /* SDM+Download.swift in Sources */,
 				DF16F2D02A5F99BE00D7AFBB /* PageView+Tile.swift in Sources */,
-				DFBE483E2A25BC88000ABA16 /* OPDSContent.swift in Sources */,
 				DF9BD6482891D5B4006628D0 /* DSK+Content.swift in Sources */,
 				DF489C342A846B83006A21B9 /* IV+Settings.swift in Sources */,
 				DF8B8746282077AC0044D277 /* InteractiveTagCell.swift in Sources */,
@@ -3032,7 +3028,6 @@
 				DF4817E62A6DF22700CB3A47 /* ComicInfo+Methods.swift in Sources */,
 				DF62B5AD2A95BFB200F907CD /* Realm+UpdateFeed.swift in Sources */,
 				DF11147C2A92E96300FA8A39 /* WebtoonController+Gesture.swift in Sources */,
-				DFB47F002881013A0040A1BD /* OPDSClient.swift in Sources */,
 				DF8D0B932800EE48003E4C3E /* BookmarksView.swift in Sources */,
 				DF8D0B792800EE48003E4C3E /* LibraryGrid+ProfileModifier.swift in Sources */,
 				DFDBF9E92A7DC2AD006D49AD /* Paged+ImageCell.swift in Sources */,
@@ -3094,6 +3089,7 @@
 				DF67EB8828E3674900076FF5 /* LG+MoveFlag.swift in Sources */,
 				DF8D0B952800EE48003E4C3E /* ProfileView+LibrarySheet.swift in Sources */,
 				DF27834F2A79A16C0098BBA9 /* Realm+CustomThumbnail.swift in Sources */,
+				DF5E3D7D2B3102F400F1722C /* Model.xcdatamodeld in Sources */,
 				DF020A662A8C5F7900BC5562 /* PagingController+DoublePage.swift in Sources */,
 				DF553CC4297119AD004C3428 /* UserDefaultSerializable.swift in Sources */,
 				DF27833B2A799D950098BBA9 /* Realm+Chapter.swift in Sources */,

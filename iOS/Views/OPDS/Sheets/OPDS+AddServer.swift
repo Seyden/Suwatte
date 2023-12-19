@@ -73,8 +73,7 @@ extension OPDSView {
                                 let _ = try await client.getFeed(url: entry.host)
 
                                 // Save
-                                let actor = await RealmActor.shared()
-                                await actor.saveNewOPDSServer(entry: entry)
+                                CDOServer.add(info: entry)
                                 // Dismiss
                                 presentationMode.wrappedValue.dismiss()
 

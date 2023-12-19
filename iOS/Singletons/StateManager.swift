@@ -272,20 +272,8 @@ extension StateManager {
                     self?.openReader(state: state)
                 }
 
-            } else if let content = reference.opds {
-                let chapter = content
-                    .toReadableChapter()
-                let state: ReaderState = .init(title: content.contentTitle,
-                                               chapter: chapter,
-                                               chapters: [chapter],
-                                               requestedPage: bookmark.page - 1,
-                                               requestedOffset: bookmark.pageOffsetPCT,
-                                               readingMode: nil,
-                                               dismissAction: nil)
-                await MainActor.run { [weak self] in
-                    self?.openReader(state: state)
-                }
-            } else if let content = reference.archive {
+            }
+            else if let content = reference.archive {
                 let file = try content
                     .getURL()?
                     .convertToSTTFile()

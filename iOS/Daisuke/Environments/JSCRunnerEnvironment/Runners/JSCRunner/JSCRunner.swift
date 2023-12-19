@@ -28,7 +28,7 @@ public class JSCRunner: DSKRunner, JSCContextWrapper {
         if let customID {
             let runner = try CDRunner.get(for: customID)
             guard let runner else {
-                throw DSK.Errors.NamedError(name: "", message: "Satellite not found")
+                throw DSK.Errors.NamedError(name: "", message: "Runner Object not found")
             }
             customName = runner.name
             object.context.evaluateScript("RunnerObject.info.id = '\(customID)';IDENTIFIER = '\(customID)'")

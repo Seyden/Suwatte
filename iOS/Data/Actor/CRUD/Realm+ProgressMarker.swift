@@ -50,19 +50,21 @@ extension RealmActor {
             reference = chapter.toStored().generateReference()
             reference?.archive = content
         case STTHelpers.OPDS_CONTENT_ID:
-            let content = realm
-                .objects(StreamableOPDSContent.self)
-                .where { $0.id == chapter.id && !$0.isDeleted }
-                .first
-            reference = chapter.toStored().generateReference()
-            reference?.opds = content
+            break
+            //FIXME: hih
+//            let content = realm
+//                .objects(StreamableOPDSContent.self)
+//                .where { $0.id == chapter.id && !$0.isDeleted }
+//                .first
+//            reference = chapter.toStored().generateReference()
+//            reference?.opds = content
         default:
             reference = chapter.toStored().generateReference()
             reference?.content = getStoredContent(id)
         }
 
         // Ensure Chapter Reference has been generated, Save Reference
-        let hasValidReference = reference?.content != nil || reference?.archive != nil || reference?.opds != nil
+        let hasValidReference = reference?.content != nil || reference?.archive != nil
         guard let reference, hasValidReference else { return }
 
         await operation {
@@ -118,12 +120,14 @@ extension RealmActor {
             reference = chapter.toStored().generateReference()
             reference?.archive = content
         case STTHelpers.OPDS_CONTENT_ID:
-            let content = realm
-                .objects(StreamableOPDSContent.self)
-                .where { $0.id == chapter.id && !$0.isDeleted }
-                .first
-            reference = chapter.toStored().generateReference()
-            reference?.opds = content
+            // FIXME: OPDS
+            break
+//            let content = realm
+//                .objects(StreamableOPDSContent.self)
+//                .where { $0.id == chapter.id && !$0.isDeleted }
+//                .first
+//            reference = chapter.toStored().generateReference()
+//            reference?.opds = content
         default:
             reference = chapter.toStored().generateReference()
             reference?.content = getStoredContent(id)

@@ -30,12 +30,14 @@ extension RealmActor {
             reference = chapter.toStored().generateReference()
             reference?.archive = content
         case STTHelpers.OPDS_CONTENT_ID:
-            let content = realm
-                .objects(StreamableOPDSContent.self)
-                .where { $0.id == chapter.id && !$0.isDeleted }
-                .first
-            reference = chapter.toStored().generateReference()
-            reference?.opds = content
+            break
+            // FIXME: This
+//            let content = realm
+//                .objects(StreamableOPDSContent.self)
+//                .where { $0.id == chapter.id && !$0.isDeleted }
+//                .first
+//            reference = chapter.toStored().generateReference()
+//            reference?.opds = content
         default:
             reference = chapter.toStored().generateReference()
             reference?.content = getObject(of: StoredContent.self, with: chapter.STTContentIdentifier)

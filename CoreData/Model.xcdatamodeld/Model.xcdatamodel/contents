@@ -96,4 +96,10 @@
             </uniquenessConstraint>
         </uniquenessConstraints>
     </entity>
+    <entity name="CDSearchHistory" representedClassName="CDSearchHistory" syncable="YES" codeGenerationType="class">
+        <attribute name="date" optional="YES" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="display_" optional="YES" attributeType="String"/>
+        <attribute name="request" optional="YES" attributeType="Binary"/>
+        <attribute name="source_" optional="YES" attributeType="String"/>
+    </entity>
 </model>

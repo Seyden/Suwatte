@@ -357,6 +357,7 @@
 		DFC153472B31338900C0737A /* CDArchive.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC153462B31338900C0737A /* CDArchive.swift */; };
 		DFC153492B313CAA00C0737A /* CDCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC153482B313CAA00C0737A /* CDCollection.swift */; };
 		DFC1534B2B316A8800C0737A /* CDKVPair.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1534A2B316A8800C0737A /* CDKVPair.swift */; };
+		DFC1534D2B31712400C0737A /* +CDSearchHistory.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC1534C2B31712400C0737A /* +CDSearchHistory.swift */; };
 		DFC383992AB4195C003903FA /* Realm+RunnerUpdate.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC383982AB4195C003903FA /* Realm+RunnerUpdate.swift */; };
 		DFC39E9328A093C900450EC4 /* InstalledRunnersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC39E9228A093C900450EC4 /* InstalledRunnersView.swift */; };
 		DFC39E9528A093D700450EC4 /* RunnerListsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DFC39E9428A093D700450EC4 /* RunnerListsView.swift */; };
@@ -818,6 +819,7 @@
 		DFC153462B31338900C0737A /* CDArchive.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDArchive.swift; sourceTree = "<group>"; };
 		DFC153482B313CAA00C0737A /* CDCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDCollection.swift; sourceTree = "<group>"; };
 		DFC1534A2B316A8800C0737A /* CDKVPair.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CDKVPair.swift; sourceTree = "<group>"; };
+		DFC1534C2B31712400C0737A /* +CDSearchHistory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "+CDSearchHistory.swift"; sourceTree = "<group>"; };
 		DFC383982AB4195C003903FA /* Realm+RunnerUpdate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Realm+RunnerUpdate.swift"; sourceTree = "<group>"; };
 		DFC39E9228A093C900450EC4 /* InstalledRunnersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InstalledRunnersView.swift; sourceTree = "<group>"; };
 		DFC39E9428A093D700450EC4 /* RunnerListsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RunnerListsView.swift; sourceTree = "<group>"; };
@@ -1443,6 +1445,7 @@
 				DFC153462B31338900C0737A /* CDArchive.swift */,
 				DFC153482B313CAA00C0737A /* CDCollection.swift */,
 				DFC1534A2B316A8800C0737A /* CDKVPair.swift */,
+				DFC1534C2B31712400C0737A /* +CDSearchHistory.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -3018,6 +3021,7 @@
 				DFE1B1152A9FEFD600D300DB /* Backup+ChapterReference.swift in Sources */,
 				DF16F2B32A5F31F000D7AFBB /* DSK+Directory.swift in Sources */,
 				DFF1044228A9A89700E2C3A4 /* STT+JSValue.swift in Sources */,
+				DFC1534D2B31712400C0737A /* +CDSearchHistory.swift in Sources */,
 				DF1114862A92F04800FA8A39 /* WebtoonController+Slider.swift in Sources */,
 				DF68838A2A609521009B5642 /* Landing+Tracker.swift in Sources */,
 				DFF09B5A2A58ED0500C5CA5E /* ContentTrackerView.swift in Sources */,

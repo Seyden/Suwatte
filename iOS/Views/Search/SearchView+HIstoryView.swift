@@ -9,24 +9,20 @@ import SwiftUI
 
 extension SearchView {
     struct HistoryView: View {
+        @FetchRequest(fetchRequest: CDSearchHistory.globalSearchRequest(), animation: .default)
+        private var history: FetchedResults<CDSearchHistory>
+
         @EnvironmentObject var model: ViewModel
         var body: some View {
             List {
-                ForEach(model.history) { entry in
+                ForEach(history) { entry in
                     Cell(entry: entry)
                         .swipeActions {
                             Button("Delete", role: .destructive) {
-                                Task {
-                                    let actor = await RealmActor.shared()
-                                    await actor.deleteSearch(entry.id)
-                                    await model.loadSearchHistory()
-                                }
+                                CDSearchHistory.remove(entry)
                             }
                         }
                 }
-            }
-            .task {
-                await model.loadSearchHistory()
             }
         }
     }
@@ -35,39 +31,28 @@ extension SearchView {
 extension SearchView.HistoryView {
     struct Cell: View {
         @EnvironmentObject var model: SearchView.ViewModel
-        let entry: UpdatedSearchHistory
+        let entry: CDSearchHistory
         var body: some View {
             Button {
-                model.query = entry.displayText
                 Task {
+                    model.query = entry.display_ ?? ""
                     await model.makeRequests()
                 }
             }
             label: {
                 HStack {
-                    Text(entry.displayText)
+                    Text(entry.display_ ?? "Search")
                         .font(.headline)
                         .fontWeight(.light)
                     Spacer()
-                    Text(entry.date.timeAgo())
-                        .font(.subheadline.weight(.light))
+                    if let date = entry.date {
+                        Text(date.timeAgo())
+                            .font(.subheadline.weight(.light))
+                    }
                 }
-
                 .contentShape(Rectangle())
             }
             .buttonStyle(.plain)
-        }
-    }
-}
-
-extension SearchView.ViewModel {
-    func loadSearchHistory() async {
-        let actor = await RealmActor.shared()
-        let data = await actor.getAllSearchHistory()
-        await MainActor.run {
-            withAnimation {
-                history = data
-            }
         }
     }
 }

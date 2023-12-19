@@ -99,12 +99,9 @@ struct DirectoryView<C: View>: View {
             .trimmingCharacters(in: .whitespacesAndNewlines)
 
         reload()
-
-        if save {
-            Task {
-                await RealmActor.shared().saveSearch(model.request, sourceId: model.runner.id, display: model.request.query ?? "")
-            }
-        }
+        
+        guard save else { return }
+        CDSearchHistory.add(model.request, source: model.runner.id, label: model.request.query ?? "")
     }
 }
 

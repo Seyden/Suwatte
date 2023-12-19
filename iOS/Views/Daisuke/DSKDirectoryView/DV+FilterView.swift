@@ -50,10 +50,7 @@ extension DirectoryView {
                             model.request.filters = data
                             model.reloadRequest()
                             model.presentFilters.toggle()
-
-                            Task {
-                                await saveSearch()
-                            }
+                            saveSearch()
                         }
                         .disabled(data == (model.request.filters ?? [:]))
                     }
@@ -61,11 +58,10 @@ extension DirectoryView {
             }
         }
 
-        func saveSearch() async {
+        func saveSearch() {
             let title = prepareSearch().trimmingCharacters(in: .whitespacesAndNewlines)
             guard !title.isEmpty else { return }
-            let actor = await RealmActor.shared()
-            await actor.saveSearch(model.request, sourceId: model.runner.id, display: title)
+            CDSearchHistory.add(model.request, source: model.runner.id, label: title)
         }
 
         func prepareSearch() -> String {

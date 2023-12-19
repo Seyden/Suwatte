@@ -120,7 +120,6 @@ extension RealmActor {
             realm.objects(ChapterReference.self).setValue(true, forKey: "isDeleted")
             realm.objects(TrackerLink.self).setValue(true, forKey: "isDeleted")
             realm.objects(ContentLink.self).setValue(true, forKey: "isDeleted")
-            realm.objects(UpdatedSearchHistory.self).setValue(true, forKey: "isDeleted")
             realm.objects(ChapterBookmark.self).setValue(true, forKey: "isDeleted")
             realm.delete(realm.objects(StoredChapterData.self))
 

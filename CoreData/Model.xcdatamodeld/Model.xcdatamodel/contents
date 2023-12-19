@@ -22,6 +22,21 @@
             <fetchIndexElement property="id_" type="Binary" order="ascending"/>
         </fetchIndex>
     </entity>
+    <entity name="CDKVPair" representedClassName="CDKVPair" syncable="YES" codeGenerationType="class">
+        <attribute name="key_" optional="YES" attributeType="String"/>
+        <attribute name="runner_" optional="YES" attributeType="String"/>
+        <attribute name="value_" optional="YES" attributeType="String" allowsCloudEncryption="YES"/>
+        <fetchIndex name="runner_key">
+            <fetchIndexElement property="key_" type="Binary" order="ascending"/>
+            <fetchIndexElement property="runner_" type="Binary" order="ascending"/>
+        </fetchIndex>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="key_"/>
+                <constraint value="runner_"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
     <entity name="CDOPublication" representedClassName="CDOPublication" syncable="YES" codeGenerationType="class">
         <attribute name="id_" optional="YES" attributeType="String"/>
         <attribute name="lastRead" optional="YES" attributeType="Integer 32" defaultValueString="0" usesScalarValueType="YES"/>

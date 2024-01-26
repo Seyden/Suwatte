@@ -207,7 +207,7 @@ extension DirectoryView.FilterView.Cell {
         var body: some View {
             InteractiveTagView(options) { tag in
                 Button {
-                    withAnimation {
+                    withAnimation(.none) {
                         handle(tag)
                     }
                 } label: {
@@ -307,12 +307,12 @@ extension DirectoryView.FilterView.Cell.SelectView {
         var color: Color
         func body(content: Content) -> some View {
             content
-                .font(.callout.weight(.light))
+                .font(.footnote)
                 .padding(.vertical, 5)
                 .padding(.horizontal, 8)
                 .background(color)
                 .foregroundColor(Color.primary)
-                .cornerRadius(3)
+                .cornerRadius(13)
         }
     }
 }

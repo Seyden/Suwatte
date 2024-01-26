@@ -14,20 +14,33 @@ struct InteractiveTagView<T: RandomAccessCollection, Content: View>: View where 
     //    = CGFloat.infinity   // << variant for VStack
     var content: (_ t: T.Element) -> Content
     var tags: T
+    var isHorizontal: Bool
 
-    init(_ tags: T, @ViewBuilder _ content: @escaping (_ tag: T.Element) -> Content) {
+    init(_ tags: T, isHorizontal: Bool = false, @ViewBuilder _ content: @escaping (_ tag: T.Element) -> Content) {
         self.tags = tags
         self.content = content
+        self.isHorizontal = isHorizontal
     }
 
     var body: some View {
-        VStack {
-            GeometryReader { geometry in
-                self.generateContent(in: geometry)
+        if self.isHorizontal {
+            ScrollView(.horizontal, showsIndicators: false) {
+                LazyHStack {
+                    ForEach(tags) { tag in
+                        content(tag)
+                    }
+                }
             }
         }
-        .frame(height: totalHeight) // << variant for ScrollView/List
-        // .frame(maxHeight: totalHeight) // << variant for VStack
+        else {
+            VStack {
+                GeometryReader { geometry in
+                    self.generateContent(in: geometry)
+                }
+            }
+            .frame(height: totalHeight) // << variant for ScrollView/List
+            // .frame(maxHeight: totalHeight) // << variant for VStack
+        }
     }
 
     @ViewBuilder

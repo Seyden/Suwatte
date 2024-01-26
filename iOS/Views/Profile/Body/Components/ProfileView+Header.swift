@@ -87,7 +87,7 @@ extension Skeleton.Header {
                 .padding(.horizontal, 4)
                 .background(label.color.opacity(schemeIsDark ? 0.65 : 0.95))
                 .foregroundColor(.white)
-                .cornerRadius(3)
+                .cornerRadius(13)
         }
     }
 }

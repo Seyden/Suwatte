@@ -168,7 +168,7 @@ extension DSKTrackerView {
                                     .padding(.vertical, 2)
                                     .padding(.horizontal, 4)
                                     .background((tag == "NSFW" ? Color.red : .accentColor).opacity(0.65))
-                                    .cornerRadius(3)
+                                    .cornerRadius(13)
                             }
                         }
                     }

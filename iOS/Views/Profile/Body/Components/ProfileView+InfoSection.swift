@@ -47,10 +47,8 @@ extension ProfileView.Skeleton {
     struct CorePropertiesView: View {
         @EnvironmentObject var model: ProfileView.ViewModel
         var body: some View {
-            VStack(alignment: .leading, spacing: 0) {
-                if let properties = model.content.properties, !properties.isEmpty, let core = properties.get(index: 0) {
-                    PropertyTagsView(property: core, source: model.source)
-                }
+            if let properties = model.content.properties, !properties.isEmpty, let core = properties.get(index: 0) {
+                PropertyTagsView(property: core, source: model.source, isHorizontal: true)
             }
         }
     }
@@ -58,8 +56,10 @@ extension ProfileView.Skeleton {
     struct PropertyTagsView: View {
         var property: DSKCommon.Property
         var source: AnyContentSource
+        var isHorizontal: Bool = false
+
         var body: some View {
-            InteractiveTagView(property.tags) { tag in
+            InteractiveTagView(property.tags, isHorizontal: self.isHorizontal) { tag in
                 if source.ablityNotDisabled(\.disableTagNavigation) && !tag.isNonInteractive {
                     NavigationLink {
                         ContentSourceDirectoryView(source: source, request: generateSearchRequest(tagId: tag.id, propertyId: property.id))
@@ -85,11 +85,11 @@ extension ProfileView.Skeleton {
 struct ProfileTagStyle: ViewModifier {
     func body(content: Content) -> some View {
         content
-            .font(.callout.weight(.light))
+            .font(.footnote)
             .padding(.vertical, 5)
             .padding(.horizontal, 8)
             .background(Color.primary.opacity(0.1))
             .foregroundColor(Color.primary)
-            .cornerRadius(5)
+            .cornerRadius(13)
     }
 }

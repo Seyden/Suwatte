@@ -65,7 +65,7 @@ struct ContentView: View {
                 tab.view()
                     .tag(tab.rawValue)
                     .tabItem {
-                        Image(systemName: "\(tab.systemImage())\(selection == tab.rawValue ? ".fill" : "")")
+                        Label(tab.label(), systemImage: "\(tab.systemImage())\(selection == tab.rawValue ? ".fill" : "")")
                             // SwiftUI AHIG Override: https://stackoverflow.com/a/70058260
                             .environment(\.symbolVariants, .none)
                     }
